@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CloudApplication.Models.productTable
+
+@{
 	ViewData["Title"] = "My Work";
 }
 <h1>@ViewData["Title"]</h1>
@@ -11,4 +13,14 @@
 		 height="385" />
 </p>
 <p>Professional painting and commissions. R150 p/h.</p>
+<body>
+	<form asp-controller="product" asp-action="MyWork" method="post">
+		<p>Insert new products</p>
+		<input type="text" name="Name" placeholder="Name" required>
+		<input type="text" name="Price" placeholder="Price" required>
+		<input type="text" name="Category" placeholder="Category" required>
+		<input type="text" name="Availability" placeholder="Availability" required>
+		<button type="submit">Submit</button>
+	</form>
+</body>
 <p>Jamie Parker - ST10257863</p>

@@ -1,7 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Contact us";
+	ViewData["Title"] = "Contact us";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Contact details for KhumaloCraft.</p>
 <p>Jamie Parker - ST10257863</p>
+
+<p>Please enter you're details below to cteate an account.</p>
+
+<body>
+	<form asp-controller="user" asp-action="About" method="post">
+		<input type="text" name="Name" placeholder="" required />
+		<input type="text" name="Surname" placeholder="" required />
+		<input type="text" name="Email" placeholder="" required />
+		<button type="submit">Submit</button>
+	</form>
+</body>
