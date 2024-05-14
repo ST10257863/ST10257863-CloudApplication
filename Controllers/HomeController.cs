@@ -15,6 +15,13 @@ namespace CloudApplication.Controllers
 		//Here is where we give the webpage the ability to access the the subpages. without this is will not be found
 		public IActionResult Index(int userID)
 		{
+			// Retrieve all products from the database
+			List<productTable> products = productTable.GetAllProducts();
+
+			// Pass products and userID to the view
+			ViewData["Products"] = products;
+			ViewData["UserID"] = userID;
+
 			return View();
 		}
 
@@ -34,6 +41,11 @@ namespace CloudApplication.Controllers
 		}
 
 		public IActionResult Privacy()
+		{
+			return View();
+		}
+
+		public IActionResult LoginFailed()
 		{
 			return View();
 		}

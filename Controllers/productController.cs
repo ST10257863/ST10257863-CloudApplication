@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CloudApplication.Controllers
 {
-	public class productController : Controller
+	public class ProductController : Controller
 	{
 		public productTable prodtbl = new productTable();
 

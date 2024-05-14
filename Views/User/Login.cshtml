@@ -1,0 +1,20 @@
+﻿@{
+	ViewData["Title"] = "Login";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<body>
+	<!-- Display error message if it exists in TempData -->
+	@if (TempData["ErrorMessage"] != null)
+	{
+		<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+	}
+	<form asp-controller="Login" asp-action="Login" method="post">
+		<p>Please enter your first name and email:</p>
+		<input type="text" name="name" placeholder="Name" required>
+		<input type="text" name="email" placeholder="example@gmail.com" required>
+		<button type="submit">Submit</button>
+	</form>
+
+</body>

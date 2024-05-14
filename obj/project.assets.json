@@ -6245,11 +6245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jamie\\OneDrive\\Documents\\GitHub\\ST10257863-CLoudApllication\\CloudApplication.csproj",
+      "projectUniqueName": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\CloudApplication.csproj",
       "projectName": "CloudApplication",
-      "projectPath": "C:\\Users\\jamie\\OneDrive\\Documents\\GitHub\\ST10257863-CLoudApllication\\CloudApplication.csproj",
+      "projectPath": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\CloudApplication.csproj",
       "packagesPath": "C:\\Users\\jamie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jamie\\OneDrive\\Documents\\GitHub\\ST10257863-CLoudApllication\\obj\\",
+      "outputPath": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
