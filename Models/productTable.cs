@@ -1,10 +1,12 @@
-﻿using System.Data.SqlClient;
+﻿using NuGet.Protocol.Plugins;
+using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
 	public class productTable
 	{
-		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog = CloudDatabase; Persist Security Info=False;User ID = Jamie; Password=window-festive-grandee-dessert!12; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
+		//	public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog = CloudDatabase; Persist Security Info=False;User ID = Jamie; Password=window-festive-grandee-dessert!12; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
+		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 		public static SqlConnection con = new SqlConnection(con_string);
 
 		public int ProductID
@@ -53,6 +55,33 @@ namespace CloudApplication.Models
 			{
 				throw ex;
 			}
+		}
+
+		public static List<productTable> GetAllProducts()
+		{
+			List<productTable> products = new List<productTable>();
+
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				string sql = "SELECT * FROM productTable";
+				SqlCommand cmd = new SqlCommand(sql, con);
+
+				con.Open();
+				SqlDataReader rdr = cmd.ExecuteReader();
+				while (rdr.Read())
+				{
+					productTable product = new productTable();
+					product.ProductID = Convert.ToInt32(rdr["productID"]);
+					product.Name = rdr["productName"].ToString();
+					product.Price = rdr["productPrice"].ToString();
+					product.Category = rdr["productCategory"].ToString();
+					product.Availability = rdr["productAvailability"].ToString();
+
+					products.Add(product);
+				}
+			}
+
+			return products;
 		}
 	}
 }

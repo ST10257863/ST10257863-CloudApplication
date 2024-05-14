@@ -3,21 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CloudApplication.Controllers
 {
-	public class userController : Controller
+	public class UserController : Controller
 	{
 		public userTable userTbl = new userTable();
 
 		[HttpPost]
-		public ActionResult About(userTable Users)
+		public ActionResult SignUp(userTable Users)
 		{
 			var result = userTbl.insertUser(Users);
 			return RedirectToAction("Index", "Home");
 		}
 
 		[HttpGet]
-		public ActionResult About()
+		public ActionResult SignUp()
 		{
 			return View(userTbl);
+		}
+
+		public ActionResult Login()
+		{
+			return View();
 		}
 	}
 }
