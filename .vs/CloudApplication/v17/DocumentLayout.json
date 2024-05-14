@@ -1,40 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\user\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\user\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\views\\home\\mywork.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\home\\mywork.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\models\\usertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\usertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\models\\producttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\producttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\views\\home\\aboutus.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\home\\aboutus.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -42,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 184,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,107 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "userController.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\userController.cs",
-              "RelativeDocumentMoniker": "Controllers\\userController.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\userController.cs",
-              "RelativeToolTip": "Controllers\\userController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:04:20.313Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MyWork.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\MyWork.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\MyWork.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\MyWork.cshtml",
-              "RelativeToolTip": "Views\\Home\\MyWork.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-14T13:03:29.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SignUp.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\SignUp.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\SignUp.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\SignUp.cshtml",
-              "RelativeToolTip": "Views\\User\\SignUp.cshtml",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAcAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-14T13:02:41.666Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\Login.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\Login.cshtml",
-              "RelativeToolTip": "Views\\User\\Login.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-14T12:53:53.174Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AboutUs.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\AboutUs.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\AboutUs.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\AboutUs.cshtml",
-              "RelativeToolTip": "Views\\Home\\AboutUs.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-14T12:53:48.412Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LoginModel.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\LoginModel.cs",
-              "RelativeDocumentMoniker": "Models\\LoginModel.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\LoginModel.cs",
-              "RelativeToolTip": "Models\\LoginModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T12:51:35.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "userTable.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\userTable.cs",
-              "RelativeDocumentMoniker": "Models\\userTable.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\userTable.cs",
-              "RelativeToolTip": "Models\\userTable.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T12:41:40.432Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "productTable.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\productTable.cs",
-              "RelativeDocumentMoniker": "Models\\productTable.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\productTable.cs",
-              "RelativeToolTip": "Models\\productTable.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAD4vwgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T12:05:13.025Z"
             }
           ]
         }
