@@ -20,7 +20,7 @@ namespace CloudApplication.Controllers
 			return View(userTbl);
 		}
 
-		public IActionResult Login()
+		public ActionResult Login()
 		{
 			return View();
 		}

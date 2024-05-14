@@ -5,7 +5,9 @@ namespace CloudApplication.Models
 {
 	public class LoginModel
 	{
-		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog = CloudDatabase; Persist Security Info=False;User ID = Jamie; Password=window-festive-grandee-dessert!12; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
+		//public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog = CloudDatabase; Persist Security Info=False;User ID = Jamie; Password=window-festive-grandee-dessert!12; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
+		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
 		public static SqlConnection con = new SqlConnection(con_string);
 
 		public int SelectUser(string email, string name)
