@@ -31,7 +31,7 @@ namespace CloudApplication.Controllers
 				// User not found, handle accordingly (e.g., show error message)
 				//return View("LoginFailed");
 				TempData["ErrorMessage"] = "Invalid email or name. Please try again.";
-				return RedirectToAction("Login", "Home");
+				return RedirectToAction("Login", "User");
 
 			}
 		}
