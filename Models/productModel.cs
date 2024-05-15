@@ -42,7 +42,11 @@ namespace CloudApplication.Models
 
 				cmd.Parameters.AddWithValue("@Name", product.Name);
 				cmd.Parameters.AddWithValue("@Price", product.Price);
-				cmd.Parameters.AddWithValue("@Category", product.Category);
+				/*cmd.Parameters.AddWithValue("@Category", product.Category);*/
+				// Validate and truncate product category if necessary
+				string category = (product.Category.Length <= 50) ? product.Category : product.Category.Substring(0, 50);
+				cmd.Parameters.AddWithValue("@Category", category);
+
 				cmd.Parameters.AddWithValue("@Availability", product.Availability);
 
 				con.Open();
@@ -52,6 +56,7 @@ namespace CloudApplication.Models
 			}
 			catch (Exception ex)
 			{
+				con.Close();
 				throw ex;
 			}
 		}
@@ -78,8 +83,9 @@ namespace CloudApplication.Models
 
 					products.Add(product);
 				}
-			}
 
+			}
+			con.Close();
 			return products;
 		}
 

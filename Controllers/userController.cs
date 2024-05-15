@@ -15,6 +15,7 @@ namespace CloudApplication.Controllers
 			var result = userTbl.insertUser(Users);
 			return RedirectToAction("Index", "Home");
 		}
+
 		//asp-action"Login"
 		[HttpPost]
 		public ActionResult Login(string email, string name)
@@ -47,14 +48,11 @@ namespace CloudApplication.Controllers
 		{
 			return View(userTbl);
 		}
+
 		//[HttpGet]
 		public ActionResult Login()
 		{
 			return View();
 		}
-
-
-
-
 	}
 }

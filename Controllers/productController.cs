@@ -8,7 +8,7 @@ namespace CloudApplication.Controllers
 		public productModel prodtbl = new productModel();
 
 		[HttpPost]
-		public ActionResult MyWork(productModel products)
+		public ActionResult MyWorkInsertProduct(productModel products)
 		{
 			var newProduct = prodtbl.insertProduct(products);
 			return RedirectToAction("Index", "Home");
@@ -21,7 +21,7 @@ namespace CloudApplication.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index()
+		public IActionResult IndexRetrieveProducts()
 		{
 			var products = productModel.retrieveProducts();
 			return View(products);

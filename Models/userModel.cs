@@ -48,7 +48,7 @@ namespace CloudApplication.Models
 
 		public int SelectUser(string email, string name)
 		{
-			int userId = -1; // Default value if user is not found
+			int userID = -1; // Default value if user is not found
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
 				string sql = "SELECT userID FROM userTable WHERE userEmail = @Email AND userName = @Name";
@@ -61,7 +61,7 @@ namespace CloudApplication.Models
 					object result = cmd.ExecuteScalar();
 					if (result != null && result != DBNull.Value)
 					{
-						userId = Convert.ToInt32(result);
+						userID = Convert.ToInt32(result);
 					}
 				}
 				catch (Exception ex)
@@ -71,8 +71,7 @@ namespace CloudApplication.Models
 					throw ex;
 				}
 			}
-			return userId;
+			return userID;
 		}
 	}
 }
-
