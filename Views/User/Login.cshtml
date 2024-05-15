@@ -10,7 +10,7 @@
 	{
 		<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
 	}
-	<form asp-controller="Login" asp-action="Login" method="post">
+	<form asp-controller="User" asp-action="Login" method="post">
 		<p>Please enter your first name and email:</p>
 		<input type="text" name="name" placeholder="Name" required>
 		<input type="text" name="email" placeholder="example@gmail.com" required>

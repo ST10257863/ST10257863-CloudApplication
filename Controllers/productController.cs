@@ -5,10 +5,10 @@ namespace CloudApplication.Controllers
 {
 	public class ProductController : Controller
 	{
-		public productTable prodtbl = new productTable();
+		public productModel prodtbl = new productModel();
 
 		[HttpPost]
-		public ActionResult MyWork(productTable products)
+		public ActionResult MyWork(productModel products)
 		{
 			var newProduct = prodtbl.insertProduct(products);
 			return RedirectToAction("Index", "Home");
@@ -18,6 +18,13 @@ namespace CloudApplication.Controllers
 		public ActionResult MyWork()
 		{
 			return View(prodtbl);
+		}
+
+		[HttpGet]
+		public IActionResult Index()
+		{
+			var products = productModel.retrieveProducts();
+			return View(products);
 		}
 	}
 }
