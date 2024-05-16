@@ -13,18 +13,14 @@ namespace CloudApplication.Controllers
 			_logger = logger;
 		}
 		//Here is where we give the webpage the ability to access the the subpages. without this is will not be found
-		public IActionResult Index()
+		public IActionResult Index(int userID)
 		{
-			// Retrieve the userID from session
-			var userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
-
-
 			// Retrieve all products from the database
-			List<productModel> products = productModel.retrieveProducts();
+			List<productTable> products = productTable.GetAllProducts();
 
-			// Pass products to the view
+			// Pass products and userID to the view
 			ViewData["Products"] = products;
+			ViewData["UserID"] = userID;
 
 			return View();
 		}
@@ -44,19 +40,12 @@ namespace CloudApplication.Controllers
 			return View();
 		}
 
-		public IActionResult Transaction()
+		public IActionResult Privacy()
 		{
-			// Retrieve the userID from session
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
-
-
-			List<transactionModel> transactions = transactionModel.RetrieveUserTransactions(userID);
-			ViewData["Transactions"] = transactions;
-
 			return View();
 		}
-		public IActionResult Privacy()
+
+		public IActionResult LoginFailed()
 		{
 			return View();
 		}
