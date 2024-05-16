@@ -1,5 +1,7 @@
 ﻿@{
 	ViewData["Title"] = "Login";
+	var redirectReason = TempData["RedirectReason"] as string;
+
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -9,6 +11,10 @@
 	@if (TempData["ErrorMessage"] != null)
 	{
 		<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+	}
+	else if (!string.IsNullOrEmpty(redirectReason))
+	{
+		<div class="alert alert-warning">@redirectReason</div>
 	}
 	<form asp-controller="User" asp-action="Login" method="post">
 		<p>Please enter your first name and email:</p>

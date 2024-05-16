@@ -20,7 +20,7 @@ namespace CloudApplication.Controllers
 			return View(prodtbl);
 		}
 
-		[HttpGet]
+		[HttpGet]//This is for placing orders do not remove
 		public IActionResult IndexRetrieveProducts()
 		{
 			var products = productModel.retrieveProducts();

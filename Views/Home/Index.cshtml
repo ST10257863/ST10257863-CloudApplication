@@ -2,7 +2,7 @@
 
 @{
 	ViewData["Title"] = "Home Page";
-	var userID = ViewData["userID"];
+	int? userID = ViewData["userID"] as int?;
 	var products = ViewData["products"] as List<CloudApplication.Models.productModel>;
 }
 
@@ -13,9 +13,13 @@
 </div>
 
 
-@if (userID != null)
+@if (userID.HasValue)
 {
 	<p>User ID: @userID</p>
+}
+else
+{
+	<p>User ID: Not Logged In</p>
 }
 
 <h2>All Products</h2>
@@ -39,13 +43,17 @@
 				<td>@product.Category</td>
 				<td>@product.Availability</td>
 				<td>
-					<form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
-						<input type="hidden" name="userID" value="@userID" />
+					<form asp-controller="transaction" asp-action="PlaceOrder" method="post">
 						<input type="hidden" name="productID" value="@product.ProductID" />
-						<button type="submit">Place Order</button>
+						<input type="hidden" name="quantity" value="1" /> <!-- Default quantity to 1 -->
+						<button type="submit" class="btn btn-primary">Place Order</button>
 					</form>
+
 				</td>
 			</tr>
 		}
+
 	</tbody>
+	<p><a href="https://localhost:7282/Home/Transaction">View all current transactions.</a></p>
+
 </table>
