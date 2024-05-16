@@ -23,15 +23,11 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 						</li>
-						@* <li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
-						</li> *@
+
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SignUp">Sign Up</a>
-						</li>
+
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
 						</li>
@@ -54,9 +50,11 @@
 			&copy; 2024 - CloudApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 		</div>
 	</footer>
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

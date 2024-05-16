@@ -3,9 +3,8 @@ using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
-	public class productTable
+	public class productModel
 	{
-		//	public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog = CloudDatabase; Persist Security Info=False;User ID = Jamie; Password=window-festive-grandee-dessert!12; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
 		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 		public static SqlConnection con = new SqlConnection(con_string);
 
@@ -34,7 +33,7 @@ namespace CloudApplication.Models
 			get; set;
 		}
 
-		public int insertProduct(productTable product)
+		public int insertProduct(productModel product)
 		{
 			try
 			{
@@ -43,7 +42,11 @@ namespace CloudApplication.Models
 
 				cmd.Parameters.AddWithValue("@Name", product.Name);
 				cmd.Parameters.AddWithValue("@Price", product.Price);
-				cmd.Parameters.AddWithValue("@Category", product.Category);
+				/*cmd.Parameters.AddWithValue("@Category", product.Category);*/
+				// Validate and truncate product category if necessary
+				string category = (product.Category.Length <= 50) ? product.Category : product.Category.Substring(0, 50);
+				cmd.Parameters.AddWithValue("@Category", category);
+
 				cmd.Parameters.AddWithValue("@Availability", product.Availability);
 
 				con.Open();
@@ -53,13 +56,14 @@ namespace CloudApplication.Models
 			}
 			catch (Exception ex)
 			{
+				con.Close();
 				throw ex;
 			}
 		}
 
-		public static List<productTable> GetAllProducts()
+		public static List<productModel> retrieveProducts()
 		{
-			List<productTable> products = new List<productTable>();
+			List<productModel> products = new List<productModel>();
 
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
@@ -70,7 +74,7 @@ namespace CloudApplication.Models
 				SqlDataReader rdr = cmd.ExecuteReader();
 				while (rdr.Read())
 				{
-					productTable product = new productTable();
+					productModel product = new productModel();
 					product.ProductID = Convert.ToInt32(rdr["productID"]);
 					product.Name = rdr["productName"].ToString();
 					product.Price = rdr["productPrice"].ToString();
@@ -79,9 +83,11 @@ namespace CloudApplication.Models
 
 					products.Add(product);
 				}
-			}
 
+			}
+			con.Close();
 			return products;
 		}
+
 	}
 }

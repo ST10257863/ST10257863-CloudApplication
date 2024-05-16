@@ -1,5 +1,7 @@
 ﻿@{
 	ViewData["Title"] = "Login";
+	var redirectReason = TempData["RedirectReason"] as string;
+
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,11 +12,16 @@
 	{
 		<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
 	}
-	<form asp-controller="Login" asp-action="Login" method="post">
+	else if (!string.IsNullOrEmpty(redirectReason))
+	{
+		<div class="alert alert-warning">@redirectReason</div>
+	}
+	<form asp-controller="User" asp-action="Login" method="post">
 		<p>Please enter your first name and email:</p>
 		<input type="text" name="name" placeholder="Name" required>
 		<input type="text" name="email" placeholder="example@gmail.com" required>
 		<button type="submit">Submit</button>
 	</form>
-
+	<p></p>
+	<p>If you don't have an account <a href="https://localhost:7282/User/SignUp">Sign Up</a> for a new account.</p>
 </body>
