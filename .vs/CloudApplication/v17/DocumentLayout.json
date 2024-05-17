@@ -1,7 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\models\\transactionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\transactionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -20,8 +49,95 @@
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\ProductModel.cs",
+              "RelativeDocumentMoniker": "Models\\ProductModel.cs",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\ProductModel.cs",
+              "RelativeToolTip": "Models\\ProductModel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwAoAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T07:15:18.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "productController.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\productController.cs",
+              "RelativeDocumentMoniker": "Controllers\\productController.cs",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\productController.cs*",
+              "RelativeToolTip": "Controllers\\productController.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:46:41.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TransactionController.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\TransactionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TransactionController.cs",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\TransactionController.cs",
+              "RelativeToolTip": "Controllers\\TransactionController.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAQwEUAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:46:13.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "transactionModel.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\transactionModel.cs",
+              "RelativeDocumentMoniker": "Models\\transactionModel.cs",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\transactionModel.cs",
+              "RelativeToolTip": "Models\\transactionModel.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAA2wBcAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:45:17.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwEEAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:44:29.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-17T06:42:10.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAABAAAAAAAAAAAADwvzwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-16T15:26:43.599Z",
+              "EditorCaption": ""
             }
           ]
         }

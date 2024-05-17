@@ -3,7 +3,7 @@
 @{
 	ViewData["Title"] = "Home Page";
 	int? userID = ViewData["userID"] as int?;
-	var products = ViewData["products"] as List<CloudApplication.Models.productModel>;
+	var products = ViewData["products"] as List<CloudApplication.Models.ProductModel>;
 }
 
 <div class="text-center">
@@ -23,6 +23,16 @@ else
 }
 
 <h2>All Products</h2>
+
+<!-- Display messages from TempData -->
+@if (TempData["SuccessMessage"] != null)
+{
+	<div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+	<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
 
 <table class="table">
 	<thead>
@@ -55,5 +65,53 @@ else
 
 	</tbody>
 	<p><a href="https://localhost:7282/Home/Transaction">View all current transactions.</a></p>
-
 </table>
+
+@* <!-- Order Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="orderModalLabel">Place Order</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="orderForm" asp-controller="Transaction" asp-action="PlaceOrder" method="post">
+					<input type="hidden" name="productID" id="productID" />
+					<div class="form-group">
+						<label for="productName">Product Name</label>
+						<input type="text" class="form-control" id="productName" readonly />
+					</div>
+					<div class="form-group">
+						<label for="productPrice">Product Price</label>
+						<input type="text" class="form-control" id="productPrice" readonly />
+					</div>
+					<div class="form-group">
+						<label for="quantity">Quantity</label>
+						<input type="number" class="form-control" name="quantity" id="quantity" value="1" min="1" required />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit Order</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		$('#orderModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget); // Button that triggered the modal
+			var productID = button.data('product-id'); // Extract info from data-* attributes
+			var productName = button.data('product-name');
+			var productPrice = button.data('product-price');
+
+			var modal = $(this);
+			modal.find('.modal-title').text('Place Order for ' + productName);
+			modal.find('#productID').val(productID);
+			modal.find('#productName').val(productName);
+			modal.find('#productPrice').val(productPrice);
+		});
+	</script>
+} *@

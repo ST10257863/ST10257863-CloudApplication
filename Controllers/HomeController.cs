@@ -21,7 +21,7 @@ namespace CloudApplication.Controllers
 
 
 			// Retrieve all products from the database
-			List<productModel> products = productModel.retrieveProducts();
+			List<ProductModel> products = ProductModel.retrieveProducts();
 
 			// Pass products to the view
 			ViewData["Products"] = products;

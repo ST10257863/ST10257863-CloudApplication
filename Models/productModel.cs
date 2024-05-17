@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
-	public class productModel
+	public class ProductModel
 	{
 		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 		public static SqlConnection con = new SqlConnection(con_string);
@@ -33,7 +33,7 @@ namespace CloudApplication.Models
 			get; set;
 		}
 
-		public int insertProduct(productModel product)
+		public int insertProduct(ProductModel product)
 		{
 			try
 			{
@@ -61,9 +61,9 @@ namespace CloudApplication.Models
 			}
 		}
 
-		public static List<productModel> retrieveProducts()
+		public static List<ProductModel> retrieveProducts()
 		{
-			List<productModel> products = new List<productModel>();
+			List<ProductModel> products = new List<ProductModel>();
 
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
@@ -74,7 +74,7 @@ namespace CloudApplication.Models
 				SqlDataReader rdr = cmd.ExecuteReader();
 				while (rdr.Read())
 				{
-					productModel product = new productModel();
+					ProductModel product = new ProductModel();
 					product.ProductID = Convert.ToInt32(rdr["productID"]);
 					product.Name = rdr["productName"].ToString();
 					product.Price = rdr["productPrice"].ToString();
