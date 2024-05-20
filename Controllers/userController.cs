@@ -1,4 +1,5 @@
 ﻿using CloudApplication.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
@@ -48,6 +49,16 @@ namespace CloudApplication.Controllers
 		public ActionResult Login()
 		{
 			return View();
+		}
+
+		public IActionResult LogOut()
+		{
+			// Clear the UserID session variable
+			HttpContext.Session.Remove("UserID");
+
+			// Redirect to the home page
+			return RedirectToAction("Index", "Home");
+
 		}
 	}
 }
