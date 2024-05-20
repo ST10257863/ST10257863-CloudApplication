@@ -1,43 +1,40 @@
 ﻿using CloudApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CloudApplication.Controllers
+public class TransactionController : Controller
 {
-	public class transactionController : Controller
+	[HttpPost]
+	public IActionResult PlaceOrder(int productID, int quantity, int newTransactionGroupID)
 	{
-		[HttpPost]
-		public IActionResult PlaceOrder(int productID, int quantity)
+		int? userID = HttpContext.Session.GetInt32("UserID");
+		if (userID == null)
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			if (userID == null)
-			{
-				TempData["RedirectReason"] = "You need to log in to place an order.";
-				return RedirectToAction("Login", "User");
-			}
-			var transactionModel = new TransactionModel();
-			var result = transactionModel.PlaceOrder(userID, productID, quantity);
+			TempData["RedirectReason"] = "You need to log in to place an order.";
+			return RedirectToAction("Login", "User");
+		}
+		var transactionModel = new TransactionModel();
+		var result = transactionModel.PlaceOrder(userID, productID, quantity, newTransactionGroupID);
 
-			if (result > 0)
-			{
-				// Order placed successfully
-				TempData["SuccessMessage"] = "Order placed successfully.";
-			}
-			else
-			{
-				// Handle failure
-				TempData["ErrorMessage"] = "Failed to place order. Please try again.";
-			}
-
-			return RedirectToAction("Index", "Home");
+		if (result > 0)
+		{
+			// Order placed successfully
+			TempData["SuccessMessage"] = "Order placed successfully.";
+		}
+		else
+		{
+			// Handle failure
+			TempData["ErrorMessage"] = "Failed to place order. Please try again.";
 		}
 
+		return RedirectToAction("Index", "Home");
+	}
 
-		[HttpPost]
-		public IActionResult RetrieveUserTransactionsCon(int? userID)
-		{
-			var transactionModel = new TransactionModel();
-			var result = TransactionModel.RetrieveUserTransactions(userID);
-			return RedirectToAction();
-		}
+
+	[HttpPost]
+	public IActionResult RetrieveUserTransactions(int? userID)
+	{
+		var transactionModel = new TransactionModel();
+		var transactions = transactionModel.RetrieveUserTransactions(userID).OrderBy(t => t.TransactionGroupID).ToList();
+		return View("Transaction", transactions);
 	}
 }

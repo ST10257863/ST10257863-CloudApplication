@@ -1,30 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<CloudApplication.Models.TransactionModel>
 @{
 	ViewData["Title"] = "Transactions";
-	var transactions = ViewData["transactions"] as List<CloudApplication.Models.TransactionModel>;
+	int? userID = ViewData["userID"] as int?;
 }
-<table class="table">
-	<tr>
-		<th>Transaction ID</th>
-		<th>User ID</th>
-		<th>Product ID</th>
-		<th>Product Name</th>
-		<th>Transaction Quantity</th>
-		<th>Transaction Date</th>
-	</tr>
-	@foreach (var transaction in transactions)
-	{
-		<tr>
-			<td>@transaction.TransactionID</td>
-			<td>@transaction.UserID</td>
-			<td>@transaction.ProductID</td>
-			<td>@transaction.ProductName</td>
-			<td>@transaction.Quantity</td>
-			<td>@transaction.TransactionDate</td>
-		</tr>
-	}
-	<tbody>
-	</tbody>
-</table>
+
+@if (Model != null && Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="6">Transaction History for User:@userID</th>
+			</tr>
+			<tr>
+				@* <th>Order</th> *@
+				@* <th>Transaction ID</th> *@
+				@* <th>User ID</th> *@
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Transaction Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var transactionGroup in Model.GroupBy(t => t.TransactionGroupID))
+			{
+				<tr>
+					<td colspan="6" style="background-color: lightgray">
+						Order number @transactionGroup.Key - @transactionGroup.First().TransactionDate.ToString("yyyy/MM/dd")
+					</td>
+				</tr>
+				@foreach (var transaction in transactionGroup)
+				{
+					<tr>
+						@* <td></td> <!-- Leave this cell empty for alignment --> *@
+						@* <td>@transaction.TransactionID</td> *@
+						@* <td>@transaction.UserID</td> *@
+						<td>@transaction.ProductID</td>
+						<td>@transaction.ProductName</td>
+						<td>@transaction.Quantity</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No transactions available.</p>
+}

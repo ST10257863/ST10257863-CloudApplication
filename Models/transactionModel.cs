@@ -35,57 +35,76 @@ namespace CloudApplication.Models
 			get; set;
 		}
 
-		public int PlaceOrder(int? userID, int productID, int quantity)
+		public int TransactionGroupID
+		{
+			get; set;
+		}
+
+		public int PlaceOrder(int? userID, int productID, int quantity, int transactionGroupID)
 		{
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				string sql = "INSERT INTO transactionTable (UserID, ProductID, transactionQuantity, transactionDate) VALUES (@UserID, @ProductID, @Quantity, @TransactionDate)";
+				con.Open();
+
+				string sql = "INSERT INTO transactionTable (UserID, ProductID, transactionQuantity, transactionDate, transactionGroupID) VALUES (@UserID, @ProductID, @Quantity, @TransactionDate, @TransactionGroupID)";
 				SqlCommand cmd = new SqlCommand(sql, con);
 				cmd.Parameters.AddWithValue("@UserID", userID);
 				cmd.Parameters.AddWithValue("@ProductID", productID);
 				cmd.Parameters.AddWithValue("@Quantity", quantity);
 				cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
+				cmd.Parameters.AddWithValue("@TransactionGroupID", transactionGroupID);
 
-				con.Open();
-				int rowsAffected = cmd.ExecuteNonQuery();
+				int transactionID = Convert.ToInt32(cmd.ExecuteScalar());
+
 				con.Close();
-				return rowsAffected;
+
+				return transactionID;
+			}
+		}
+
+		public int CreateNewOrder(int userID)
+		{
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				con.Open();
+				string getLastTransactionGroupIDQuery = "SELECT TOP 1 transactionGroupID FROM transactionTable ORDER BY transactionGroupID DESC";
+				SqlCommand getLastTransactionGroupIDCmd = new SqlCommand(getLastTransactionGroupIDQuery, con);
+				int lastTransactionGroupID = 0;
+				object result = getLastTransactionGroupIDCmd.ExecuteScalar();
+				if (result != null && result != DBNull.Value)
+				{
+					lastTransactionGroupID = Convert.ToInt32(result);
+				}
+				int newTransactionGroupID = lastTransactionGroupID + 1;
+				return newTransactionGroupID;
 			}
 		}
 
 
-		public static List<TransactionModel> RetrieveUserTransactions(int? userID)
+		public List<TransactionModel> RetrieveUserTransactions(int? userID)
 		{
 			List<TransactionModel> transactions = new List<TransactionModel>();
-			if (userID != null)
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				using (SqlConnection con = new SqlConnection(con_string))
+				con.Open();
+				string sql = "SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName, t.transactionDate, t.transactionGroupID FROM transactionTable t JOIN productTable p ON t.productID = p.productID WHERE t.userID = @userID";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@userID", userID);
+				SqlDataReader rdr = cmd.ExecuteReader();
+				while (rdr.Read())
 				{
-					string sql = @"
-                    SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName, t.transactionDate
-                    FROM transactionTable t
-                    JOIN productTable p ON t.productID = p.productID
-                    WHERE t.userID = @userID";
-
-					SqlCommand cmd = new SqlCommand(sql, con);
-					cmd.Parameters.AddWithValue("@userID", userID);
-
-					con.Open();
-					SqlDataReader rdr = cmd.ExecuteReader();
-					while (rdr.Read())
+					TransactionModel transaction = new TransactionModel
 					{
-						TransactionModel transaction = new TransactionModel
-						{
-							TransactionID = Convert.ToInt32(rdr["transactionID"]),
-							UserID = Convert.ToInt32(rdr["userID"]),
-							ProductID = Convert.ToInt32(rdr["productID"]),
-							Quantity = Convert.ToInt32(rdr["transactionQuantity"]),
-							ProductName = rdr["productName"].ToString(),
-							TransactionDate = Convert.ToDateTime(rdr["transactionDate"])
-						};
+						TransactionID = Convert.ToInt32(rdr["transactionID"]),
+						UserID = Convert.ToInt32(rdr["userID"]),
+						ProductID = Convert.ToInt32(rdr["productID"]),
+						Quantity = Convert.ToInt32(rdr["transactionQuantity"]),
+						ProductName = rdr["productName"].ToString(),
+						TransactionDate = Convert.ToDateTime(rdr["transactionDate"]),
+						TransactionGroupID = Convert.ToInt32(rdr["transactionGroupID"])
 
-						transactions.Add(transaction);
-					}
+					};
+					transactions.Add(transaction);
 				}
 			}
 			return transactions;

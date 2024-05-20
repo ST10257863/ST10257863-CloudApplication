@@ -1,7 +1,5 @@
 using CloudApplication.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CloudApplication.Controllers
@@ -65,21 +63,20 @@ namespace CloudApplication.Controllers
 			return View();
 		}
 
-		//public IActionResult Cart()
-		//{
-		//	return View();
-		//}
-
 		public IActionResult Transaction()
 		{
 			// Retrieve the userID from session
 			int? userID = HttpContext.Session.GetInt32("UserID");
 			ViewData["userID"] = userID;
+			if (userID == null)
+			{
+				TempData["RedirectReason"] = "You need to log in to perform this action.";
+				return RedirectToAction("Login", "User");
+			}
 
-			List<TransactionModel> transactions = TransactionModel.RetrieveUserTransactions(userID);
-			ViewData["Transactions"] = transactions;
-
-			return View();
+			// Retrieve user transactions
+			var transactionController = new TransactionController();
+			return transactionController.RetrieveUserTransactions(userID);
 		}
 
 		public IActionResult Privacy()

@@ -124,11 +124,18 @@ namespace CloudApplication.Models
 		{
 			var transactionModel = new TransactionModel();
 			var cart = GetCart(userID);
+
+			// Create a new order and obtain the new transactionGroupID
+			int newTransactionGroupID = transactionModel.CreateNewOrder(userID);
+
+			// Place each item in the cart under the same order (transaction group)
 			foreach (var item in cart)
 			{
-				transactionModel.PlaceOrder(userID, item.ProductID, item.Quantity);
+				transactionModel.PlaceOrder(userID, item.ProductID, item.Quantity, newTransactionGroupID);
 			}
+
 			ClearCart(userID); // Clear the cart after checkout
+
 		}
 	}
 
