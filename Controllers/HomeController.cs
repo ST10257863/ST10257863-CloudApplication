@@ -1,5 +1,7 @@
 using CloudApplication.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CloudApplication.Controllers
@@ -12,22 +14,41 @@ namespace CloudApplication.Controllers
 		{
 			_logger = logger;
 		}
-		//Here is where we give the webpage the ability to access the the subpages. without this is will not be found
-		public IActionResult Index()
+
+		public IActionResult Index(string sortOrder)
 		{
 			// Retrieve the userID from session
 			var userID = HttpContext.Session.GetInt32("UserID");
 			ViewData["userID"] = userID;
 
+			// Set the sort order based on the current state
+			string currentSortOrder = sortOrder ?? "default";
+			string nextSortOrder;
+
+			if (currentSortOrder == "price_asc")
+			{
+				nextSortOrder = "price_desc";
+			}
+			else if (currentSortOrder == "price_desc")
+			{
+				nextSortOrder = "default";
+			}
+			else
+			{
+				nextSortOrder = "price_asc";
+			}
 
 			// Retrieve all products from the database
-			List<ProductModel> products = ProductModel.retrieveProducts();
+			List<ProductModel> products = ProductModel.RetrieveProducts(currentSortOrder);
 
-			// Pass products to the view
+			// Pass products and the next sort order to the view
 			ViewData["Products"] = products;
+			ViewData["CurrentSortOrder"] = currentSortOrder;
+			ViewData["NextSortOrder"] = nextSortOrder;
 
 			return View();
 		}
+
 
 		public IActionResult AboutUs()
 		{
@@ -50,12 +71,12 @@ namespace CloudApplication.Controllers
 			int? userID = HttpContext.Session.GetInt32("UserID");
 			ViewData["userID"] = userID;
 
-
 			List<transactionModel> transactions = transactionModel.RetrieveUserTransactions(userID);
 			ViewData["Transactions"] = transactions;
 
 			return View();
 		}
+
 		public IActionResult Privacy()
 		{
 			return View();

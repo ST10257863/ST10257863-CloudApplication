@@ -12,22 +12,18 @@ namespace CloudApplication.Models
 		{
 			get; set;
 		}
-
 		public string Name
 		{
 			get; set;
 		}
-
-		public string Price
+		public decimal Price
 		{
 			get; set;
 		}
-
 		public string Category
 		{
 			get; set;
 		}
-
 		public string Availability
 		{
 			get; set;
@@ -42,8 +38,6 @@ namespace CloudApplication.Models
 
 				cmd.Parameters.AddWithValue("@Name", product.Name);
 				cmd.Parameters.AddWithValue("@Price", product.Price);
-				/*cmd.Parameters.AddWithValue("@Category", product.Category);*/
-				// Validate and truncate product category if necessary
 				string category = (product.Category.Length <= 50) ? product.Category : product.Category.Substring(0, 50);
 				cmd.Parameters.AddWithValue("@Category", category);
 
@@ -61,33 +55,51 @@ namespace CloudApplication.Models
 			}
 		}
 
-		public static List<ProductModel> retrieveProducts()
+		public static List<ProductModel> RetrieveProducts(string sortOrder)
 		{
 			List<ProductModel> products = new List<ProductModel>();
 
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				string sql = "SELECT * FROM productTable";
+				string orderClause;
+				switch (sortOrder)
+				{
+					case "price_asc":
+						orderClause = "ORDER BY productPrice ASC";
+						break;
+					case "price_desc":
+						orderClause = "ORDER BY productPrice DESC";
+						break;
+					default:
+						orderClause = "ORDER BY productID";
+						break;
+				}
+
+				string sql = $@"
+                    SELECT ProductID, productName, productPrice, productCategory, productAvailability
+                    FROM productTable
+                    {orderClause}";
+
 				SqlCommand cmd = new SqlCommand(sql, con);
 
 				con.Open();
 				SqlDataReader rdr = cmd.ExecuteReader();
 				while (rdr.Read())
 				{
-					ProductModel product = new ProductModel();
-					product.ProductID = Convert.ToInt32(rdr["productID"]);
-					product.Name = rdr["productName"].ToString();
-					product.Price = rdr["productPrice"].ToString();
-					product.Category = rdr["productCategory"].ToString();
-					product.Availability = rdr["productAvailability"].ToString();
+					ProductModel product = new ProductModel
+					{
+						ProductID = Convert.ToInt32(rdr["ProductID"]),
+						Name = rdr["productName"].ToString(),
+						Price = Convert.ToDecimal(rdr["productPrice"]),
+						Category = rdr["productCategory"].ToString(),
+						Availability = rdr["productAvailability"].ToString()
+					};
 
 					products.Add(product);
 				}
-
 			}
-			con.Close();
+
 			return products;
 		}
-
 	}
 }

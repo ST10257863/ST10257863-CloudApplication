@@ -18,10 +18,10 @@ namespace CloudApplication.Controllers
 
 		//asp-action"Login"
 		[HttpPost]
-		public ActionResult Login(string email, string name)
+		public ActionResult Login(string password, string name)
 		{
 			var userModel = new userModel();
-			int userID = userModel.SelectUser(email, name);
+			int userID = userModel.SelectUser(password, name);
 			if (userID != -1)
 			{
 				// User found, store userID in session
@@ -33,7 +33,7 @@ namespace CloudApplication.Controllers
 			else
 			{
 				// User not found, show error message
-				TempData["ErrorMessage"] = "Invalid email or name. Please try again.";
+				TempData["ErrorMessage"] = "Invalid password or name. Please try again.";
 				return RedirectToAction("Login", "User");
 			}
 		}
