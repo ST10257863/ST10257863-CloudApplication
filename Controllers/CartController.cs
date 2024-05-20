@@ -23,12 +23,13 @@ namespace CloudApplication.Controllers
 
 		public IActionResult Cart()
 		{
+
 			var userID = GetLoggedInUserId();
 			if (userID == null)
 			{
 				return RedirectToAction("Login", "User");
 			}
-
+			ViewData["userID"] = userID;
 			var cartItems = cartModel.GetCart((int)userID);
 			return View(cartItems); // Pass the list of cart items directly to the view
 		}

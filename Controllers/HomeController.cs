@@ -50,16 +50,22 @@ namespace CloudApplication.Controllers
 
 		public IActionResult AboutUs()
 		{
+			int? userID = HttpContext.Session.GetInt32("UserID");
+			ViewData["userID"] = userID;
 			return View();
 		}
 
 		public IActionResult ContactUs()
 		{
+			int? userID = HttpContext.Session.GetInt32("UserID");
+			ViewData["userID"] = userID;
 			return View();
 		}
 
 		public IActionResult MyWork()
 		{
+			int? userID = HttpContext.Session.GetInt32("UserID");
+			ViewData["userID"] = userID;
 			return View();
 		}
 
@@ -81,6 +87,8 @@ namespace CloudApplication.Controllers
 
 		public IActionResult Privacy()
 		{
+			int? userID = HttpContext.Session.GetInt32("UserID");
+			ViewData["userID"] = userID;
 			return View();
 		}
 
