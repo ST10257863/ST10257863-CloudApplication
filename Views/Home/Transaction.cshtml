@@ -10,13 +10,16 @@
 		<th>Transaction ID</th>
 		<th>User ID</th>
 		<th>Product ID</th>
+		<th>Product Name</th>
 		<th>Transaction Quantity</th>
 	</tr>
 	@foreach (var transaction in transactions)
 	{
 		<tr>
 			<td>@transaction.TransactionID</td>
+			<td>@transaction.UserID</td>
 			<td>@transaction.ProductID</td>
+			<td>@transaction.ProductName</td>
 			<td>@transaction.Quantity</td>
 			<td>
 		</tr>

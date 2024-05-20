@@ -25,12 +25,15 @@ namespace CloudApplication.Models
 		{
 			get; set;
 		}
-
+		public string ProductName
+		{
+			get; set;
+		}
 		public int PlaceOrder(int? userID, int productID, int quantity)
 		{
 			try
 			{
-				using (con)
+				using (SqlConnection con = new SqlConnection(con_string))
 				{
 					string sql = "INSERT INTO transactionTable (userID, productID, transactionQuantity) VALUES (@UserID, @ProductID, @Quantity)";
 					using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -41,7 +44,6 @@ namespace CloudApplication.Models
 
 						con.Open();
 						int rowsAffected = cmd.ExecuteNonQuery();
-						con.Close();
 						return rowsAffected;
 					}
 				}
@@ -59,23 +61,29 @@ namespace CloudApplication.Models
 			List<transactionModel> transactions = new List<transactionModel>();
 			if (userID != null)
 			{
-
 				using (SqlConnection con = new SqlConnection(con_string))
 				{
-					string sql = "SELECT * FROM transactionTable WHERE userID = @userID";
+					string sql = @"
+                    SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName
+                    FROM transactionTable t
+                    JOIN productTable p ON t.productID = p.productID
+                    WHERE t.userID = @userID";
+
 					SqlCommand cmd = new SqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("@userID", userID);
 
 					con.Open();
 					SqlDataReader rdr = cmd.ExecuteReader();
 					while (rdr.Read())
-
 					{
-						transactionModel transaction = new transactionModel();
-						transaction.TransactionID = Convert.ToInt32(rdr["transactionID"]);
-						transaction.UserID = Convert.ToInt32(rdr["userID"]);
-						transaction.ProductID = Convert.ToInt32(rdr["productID"]);
-						transaction.Quantity = Convert.ToInt32(rdr["transactionQuantity"]);
+						transactionModel transaction = new transactionModel
+						{
+							TransactionID = Convert.ToInt32(rdr["transactionID"]),
+							UserID = Convert.ToInt32(rdr["userID"]),
+							ProductID = Convert.ToInt32(rdr["productID"]),
+							Quantity = Convert.ToInt32(rdr["transactionQuantity"]),
+							ProductName = rdr["productName"].ToString()
+						};
 
 						transactions.Add(transaction);
 					}
