@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
-	public class transactionModel
+	public class TransactionModel
 	{
 		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
@@ -29,42 +29,40 @@ namespace CloudApplication.Models
 		{
 			get; set;
 		}
+
+		public DateTime TransactionDate
+		{
+			get; set;
+		}
+
 		public int PlaceOrder(int? userID, int productID, int quantity)
 		{
-			try
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				using (SqlConnection con = new SqlConnection(con_string))
-				{
-					string sql = "INSERT INTO transactionTable (userID, productID, transactionQuantity) VALUES (@UserID, @ProductID, @Quantity)";
-					using (SqlCommand cmd = new SqlCommand(sql, con))
-					{
-						cmd.Parameters.AddWithValue("@UserID", userID);
-						cmd.Parameters.AddWithValue("@ProductID", productID);
-						cmd.Parameters.AddWithValue("@Quantity", quantity);
+				string sql = "INSERT INTO transactionTable (UserID, ProductID, transactionQuantity, transactionDate) VALUES (@UserID, @ProductID, @Quantity, @TransactionDate)";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+				cmd.Parameters.AddWithValue("@Quantity", quantity);
+				cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
 
-						con.Open();
-						int rowsAffected = cmd.ExecuteNonQuery();
-						return rowsAffected;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				// Log the exception (if logging is set up) or handle it as needed
-				throw; // Rethrow the exception to be handled by the calling code
+				con.Open();
+				int rowsAffected = cmd.ExecuteNonQuery();
+				con.Close();
+				return rowsAffected;
 			}
 		}
 
 
-		public static List<transactionModel> RetrieveUserTransactions(int? userID)
+		public static List<TransactionModel> RetrieveUserTransactions(int? userID)
 		{
-			List<transactionModel> transactions = new List<transactionModel>();
+			List<TransactionModel> transactions = new List<TransactionModel>();
 			if (userID != null)
 			{
 				using (SqlConnection con = new SqlConnection(con_string))
 				{
 					string sql = @"
-                    SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName
+                    SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName, t.transactionDate
                     FROM transactionTable t
                     JOIN productTable p ON t.productID = p.productID
                     WHERE t.userID = @userID";
@@ -76,13 +74,14 @@ namespace CloudApplication.Models
 					SqlDataReader rdr = cmd.ExecuteReader();
 					while (rdr.Read())
 					{
-						transactionModel transaction = new transactionModel
+						TransactionModel transaction = new TransactionModel
 						{
 							TransactionID = Convert.ToInt32(rdr["transactionID"]),
 							UserID = Convert.ToInt32(rdr["userID"]),
 							ProductID = Convert.ToInt32(rdr["productID"]),
 							Quantity = Convert.ToInt32(rdr["transactionQuantity"]),
-							ProductName = rdr["productName"].ToString()
+							ProductName = rdr["productName"].ToString(),
+							TransactionDate = Convert.ToDateTime(rdr["transactionDate"])
 						};
 
 						transactions.Add(transaction);

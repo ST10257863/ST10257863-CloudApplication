@@ -65,13 +65,18 @@ namespace CloudApplication.Controllers
 			return View();
 		}
 
+		//public IActionResult Cart()
+		//{
+		//	return View();
+		//}
+
 		public IActionResult Transaction()
 		{
 			// Retrieve the userID from session
 			int? userID = HttpContext.Session.GetInt32("UserID");
 			ViewData["userID"] = userID;
 
-			List<transactionModel> transactions = transactionModel.RetrieveUserTransactions(userID);
+			List<TransactionModel> transactions = TransactionModel.RetrieveUserTransactions(userID);
 			ViewData["Transactions"] = transactions;
 
 			return View();

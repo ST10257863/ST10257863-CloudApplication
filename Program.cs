@@ -5,6 +5,10 @@ builder.Services.AddControllersWithViews();
 
 //New Code******************************************************
 // Add session services
+//for JSON
+builder.Services.AddHttpContextAccessor();
+
+//for session (Getting user ID)
 builder.Services.AddSession(options =>
 {
 	options.IdleTimeout = TimeSpan.FromMinutes(30); // Set timeout duration
@@ -35,7 +39,17 @@ app.UseAuthorization();
 
 //New Code******************************************************
 // Add the session middleware
-app.UseSession();
+//for session (Getting user ID)
+app.UseSession(); // Ensure session is used
+
+//For JSON
+app.UseRouting();
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllers();
+});
 //New Code******************************************************
 
 app.MapControllerRoute(

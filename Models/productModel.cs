@@ -1,11 +1,12 @@
-﻿using NuGet.Protocol.Plugins;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
 	public class ProductModel
 	{
-		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+		public static string con_string = "Server=tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 		public static SqlConnection con = new SqlConnection(con_string);
 
 		public int ProductID
@@ -29,7 +30,7 @@ namespace CloudApplication.Models
 			get; set;
 		}
 
-		public int insertProduct(ProductModel product)
+		public int InsertProduct(ProductModel product)
 		{
 			try
 			{
@@ -40,7 +41,6 @@ namespace CloudApplication.Models
 				cmd.Parameters.AddWithValue("@Price", product.Price);
 				string category = (product.Category.Length <= 50) ? product.Category : product.Category.Substring(0, 50);
 				cmd.Parameters.AddWithValue("@Category", category);
-
 				cmd.Parameters.AddWithValue("@Availability", product.Availability);
 
 				con.Open();
@@ -100,6 +100,35 @@ namespace CloudApplication.Models
 			}
 
 			return products;
+		}
+
+		public static ProductModel RetrieveProductByID(int productID)
+		{
+			ProductModel product = null;
+
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				string sql = "SELECT ProductID, productName, productPrice, productCategory, productAvailability FROM productTable WHERE ProductID = @ProductID";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+
+				con.Open();
+				SqlDataReader rdr = cmd.ExecuteReader();
+				if (rdr.Read())
+				{
+					product = new ProductModel
+					{
+						ProductID = Convert.ToInt32(rdr["ProductID"]),
+						Name = rdr["productName"].ToString(),
+						Price = Convert.ToDecimal(rdr["productPrice"]),
+						Category = rdr["productCategory"].ToString(),
+						Availability = rdr["productAvailability"].ToString()
+					};
+				}
+				con.Close();
+			}
+
+			return product;
 		}
 	}
 }

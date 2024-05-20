@@ -10,7 +10,7 @@ namespace CloudApplication.Controllers
 		[HttpPost]
 		public ActionResult MyWorkInsertProduct(ProductModel products)
 		{
-			var newProduct = prodtbl.insertProduct(products);
+			var newProduct = prodtbl.InsertProduct(products);
 			return RedirectToAction("Index", "Home");
 		}
 

@@ -3,7 +3,7 @@
 *@
 @{
 	ViewData["Title"] = "Transactions";
-	var transactions = ViewData["transactions"] as List<CloudApplication.Models.transactionModel>;
+	var transactions = ViewData["transactions"] as List<CloudApplication.Models.TransactionModel>;
 }
 <table class="table">
 	<tr>
@@ -12,6 +12,7 @@
 		<th>Product ID</th>
 		<th>Product Name</th>
 		<th>Transaction Quantity</th>
+		<th>Transaction Date</th>
 	</tr>
 	@foreach (var transaction in transactions)
 	{
@@ -21,7 +22,7 @@
 			<td>@transaction.ProductID</td>
 			<td>@transaction.ProductName</td>
 			<td>@transaction.Quantity</td>
-			<td>
+			<td>@transaction.TransactionDate</td>
 		</tr>
 	}
 	<tbody>

@@ -14,8 +14,7 @@ namespace CloudApplication.Controllers
 				TempData["RedirectReason"] = "You need to log in to place an order.";
 				return RedirectToAction("Login", "User");
 			}
-
-			var transactionModel = new transactionModel();
+			var transactionModel = new TransactionModel();
 			var result = transactionModel.PlaceOrder(userID, productID, quantity);
 
 			if (result > 0)
@@ -36,8 +35,8 @@ namespace CloudApplication.Controllers
 		[HttpPost]
 		public IActionResult RetrieveUserTransactionsCon(int? userID)
 		{
-			var transactionModel = new transactionModel();
-			var result = transactionModel.RetrieveUserTransactions(userID);
+			var transactionModel = new TransactionModel();
+			var result = TransactionModel.RetrieveUserTransactions(userID);
 			return RedirectToAction();
 		}
 	}

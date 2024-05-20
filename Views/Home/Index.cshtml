@@ -24,12 +24,6 @@ else
 }
 
 <h2>All Products</h2>
-<p>
-	<form asp-controller="Home" asp-action="Transaction" method="post">
-		<button type="submit" class="btn btn-primary">View all current transactions</button>
-	</form>
-</p>
-
 <!-- Display messages from TempData -->
 @if (TempData["SuccessMessage"] != null)
 {
@@ -39,6 +33,12 @@ else
 {
 	<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
 }
+
+<p>
+	<form asp-controller="Home" asp-action="Transaction" method="post">
+		<button type="submit" class="btn btn-primary">View all Orders</button>
+	</form>
+</p>
 
 <div class="text-left">
 	<form asp-action="Index" method="get">
@@ -79,11 +79,12 @@ else
 				<td>@product.Category</td>
 				<td>@product.Availability</td>
 				<td>
-					<form asp-controller="transaction" asp-action="PlaceOrder" method="post">
+					<form asp-action="AddToCart" asp-controller="Cart" method="post">
 						<input type="hidden" name="productID" value="@product.ProductID" />
-						<input type="hidden" name="quantity" value="1" /> <!-- Default quantity to 1 -->
-						<button type="submit" class="btn btn-primary">Place Order</button>
+						<input type="number" name="quantity" value="1" min="1" />
+						<button type="submit" class="btn btn-primary">Add to Cart</button>
 					</form>
+
 				</td>
 			</tr>
 		}
