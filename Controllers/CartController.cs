@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using CloudApplication.Models;
-using Newtonsoft.Json; // Import Newtonsoft.Json for JSON serialization
+﻿using CloudApplication.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CloudApplication.Controllers
 {
 	public class CartController : Controller
 	{
-		private readonly CartModel cartModel = new CartModel(new HttpContextAccessor());
+		private readonly CartModel cartModel = new CartModel();
 
 		// Private method to check if user is logged in
 		private int? GetLoggedInUserId()
@@ -23,13 +21,12 @@ namespace CloudApplication.Controllers
 
 		public IActionResult Cart()
 		{
-
 			var userID = GetLoggedInUserId();
 			if (userID == null)
 			{
 				return RedirectToAction("Login", "User");
 			}
-			ViewData["userID"] = userID;
+
 			var cartItems = cartModel.GetCart((int)userID);
 			return View(cartItems); // Pass the list of cart items directly to the view
 		}
@@ -45,12 +42,8 @@ namespace CloudApplication.Controllers
 
 			cartModel.AddToCart((int)userID, productID, quantity);
 			TempData["SuccessMessage"] = "Item successfully added to cart.";
-
-			// Set the success message in ViewData and return the same view
-			ViewData["SuccessMessage"] = TempData["SuccessMessage"];
 			return RedirectToAction("Index", "Home");
 		}
-
 
 		[HttpPost]
 		public IActionResult UpdateCart(int productID, int quantity)

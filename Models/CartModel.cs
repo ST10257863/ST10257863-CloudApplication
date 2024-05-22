@@ -1,165 +1,188 @@
-﻿using System.Text.Json;
+﻿using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
 	public class CartModel
 	{
-		private readonly IHttpContextAccessor _httpContextAccessor;
+		// SQL Connection string
+		private static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-		public CartModel(IHttpContextAccessor httpContextAccessor)
-		{
-			_httpContextAccessor = httpContextAccessor;
-		}
-
-		private ISession GetSession()
-		{
-			return _httpContextAccessor.HttpContext.Session;
-		}
-
-		// GetCart method retrieves the cart items from session and deserializes them from JSON
+		// Method to get the cart items for a specific user
 		public List<CartItem> GetCart(int userID)
 		{
-			var session = GetSession();
-			var cartItemsJson = session.GetString($"CartItems_{userID}");
-			if (cartItemsJson == null)
+			var cartItems = new List<CartItem>();
+
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				return new List<CartItem>();
-			}
-			return DeserializeCart(cartItemsJson);
-		}
+				con.Open();
 
-		// SaveCart method serializes the cart items to JSON and saves them in session
-		private void SaveCart(int userID, List<CartItem> cartItems)
-		{
-			var session = GetSession();
-			var cartItemsJson = SerializeCart(cartItems);
-			session.SetString($"CartItems_{userID}", cartItemsJson);
-		}
+				string sql = "SELECT c.UserID, c.ProductID, p.ProductName, p.productPrice, c.Quantity FROM cartTable c JOIN productTable p ON c.productID = p.productID WHERE UserID = @UserID";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
 
-		// Serialize cart items to JSON
-		private string SerializeCart(List<CartItem> cartItems)
-		{
-			return JsonSerializer.Serialize(cartItems);
-		}
-
-		// Deserialize cart items from JSON
-		private List<CartItem> DeserializeCart(string cartItemsJson)
-		{
-			return JsonSerializer.Deserialize<List<CartItem>>(cartItemsJson);
-		}
-
-		public void AddToCart(int userID, int productID, int quantity)
-		{
-			var product = ProductModel.RetrieveProductByID(productID);
-			var cartItems = GetCart(userID);
-
-			var existingItem = FindCartItem(cartItems, userID, productID);
-			if (existingItem == null)
-			{
-				cartItems.Add(new CartItem
+				using (SqlDataReader rdr = cmd.ExecuteReader())
 				{
-					UserID = userID,
-					ProductID = productID,
-					ProductName = product.Name,
-					Price = product.Price,
-					Quantity = quantity
-				});
-			}
-			else
-			{
-				existingItem.Quantity += quantity;
-			}
-
-			SaveCart(userID, cartItems);
-		}
-
-		// Find a cart item in the list based on userID and productID
-		private CartItem FindCartItem(List<CartItem> cartItems, int userID, int productID)
-		{
-			foreach (var item in cartItems)
-			{
-				if (item.UserID == userID && item.ProductID == productID)
-				{
-					return item;
+					while (rdr.Read())
+					{
+						CartItem item = new CartItem
+						{
+							UserID = Convert.ToInt32(rdr["UserID"]),
+							ProductID = Convert.ToInt32(rdr["ProductID"]),
+							ProductName = rdr["ProductName"].ToString(),
+							Price = Convert.ToDecimal(rdr["productPrice"]),
+							Quantity = Convert.ToInt32(rdr["Quantity"])
+						};
+						cartItems.Add(item);
+					}
 				}
+
+				con.Close();
 			}
-			return null;
+
+			return cartItems;
 		}
 
-		// Update quantity of an item in the cart
+		// Method to add a product to the cart for a specific user
+		public int AddToCart(int userID, int productID, int quantity)
+		{
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				con.Open();
+
+				string sql = @"
+                INSERT INTO cartTable (UserID, ProductID, Quantity) 
+                VALUES (@UserID, @ProductID, @Quantity)";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+				cmd.Parameters.AddWithValue("@Quantity", quantity);
+
+				int rowsAffected = cmd.ExecuteNonQuery();
+				con.Close();
+				return rowsAffected;
+			}
+		}
+
+		// Method to update the quantity of an item in the cart
 		public void UpdateCart(int userID, int productID, int quantity)
 		{
-			var cartItems = GetCart(userID);
-			var cartItem = FindCartItem(cartItems, userID, productID);
-
-			if (cartItem != null)
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				cartItem.Quantity = quantity;
-			}
+				con.Open();
 
-			SaveCart(userID, cartItems); // Save the updated cart items
+				string sql = @"
+                UPDATE cartTable 
+                SET Quantity = @Quantity 
+                WHERE UserID = @UserID AND ProductID = @ProductID";
+
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+				cmd.Parameters.AddWithValue("@Quantity", quantity);
+
+				cmd.ExecuteNonQuery();
+
+				con.Close();
+			}
 		}
 
-		// Remove an item from the cart
+		// Method to remove an item from the cart
 		public void RemoveFromCart(int userID, int productID)
 		{
-			var cartItems = GetCart(userID);
-			var itemToRemove = FindCartItem(cartItems, userID, productID);
-			if (itemToRemove != null)
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				cartItems.Remove(itemToRemove);
-				SaveCart(userID, cartItems); // Save the updated cart items
+				con.Open();
+
+				string sql = @"
+                DELETE FROM cartTable 
+                WHERE UserID = @UserID AND ProductID = @ProductID";
+
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+
+				cmd.ExecuteNonQuery();
+
+				con.Close();
 			}
 		}
 
-		// Clear all items from the cart for a specific user
+		// Method to clear all items from the cart for a specific user
 		public void ClearCart(int userID)
 		{
-			var session = GetSession();
-			session.Remove($"CartItems_{userID}"); // Remove the cart items session data
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				con.Open();
+
+				string sql = @"
+                DELETE FROM cartTable 
+                WHERE UserID = @UserID";
+
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+
+				cmd.ExecuteNonQuery();
+
+				con.Close();
+			}
 		}
+
+		// Method to check out the cart
+		//public void CheckOut(int userID)
+		//{
+		//	// Additional logic for checking out the cart can be implemented here
+		//}
 
 		// Check out the cart
 		public void CheckOut(int userID)
 		{
-			var transactionModel = new TransactionModel();
-			var cart = GetCart(userID);
-
-			// Create a new order and obtain the new transactionGroupID
-			int newTransactionGroupID = transactionModel.CreateNewOrder(userID);
-
-			// Place each item in the cart under the same order (transaction group)
-			foreach (var item in cart)
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				transactionModel.PlaceOrder(userID, item.ProductID, item.Quantity, newTransactionGroupID);
+
+				var transactionModel = new TransactionModel();
+				var cart = GetCart(userID);
+				string sql = @"
+                DELETE FROM cartTable 
+                WHERE UserID = @UserID";
+
+				// Create a new order and obtain the new transactionGroupID
+				int newTransactionGroupID = transactionModel.CreateNewOrder(userID);
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+
+				// Place each item in the cart under the same order (transaction group)
+				foreach (var item in cart)
+				{
+					transactionModel.PlaceOrder(userID, item.ProductID, item.Quantity, newTransactionGroupID);
+				}
+
+				ClearCart(userID); // Clear the cart after checkout
+				con.Close();
 			}
-
-			ClearCart(userID); // Clear the cart after checkout
-
 		}
 	}
+}
 
-	public class CartItem
+public class CartItem
+{
+	public int UserID
 	{
-		public int UserID
-		{
-			get; set;
-		}
-		public int ProductID
-		{
-			get; set;
-		}
-		public string ProductName
-		{
-			get; set;
-		}
-		public decimal Price
-		{
-			get; set;
-		}
-		public int Quantity
-		{
-			get; set;
-		}
+		get; set;
+	}
+	public int ProductID
+	{
+		get; set;
+	}
+	public string ProductName
+	{
+		get; set;
+	}
+	public decimal Price
+	{
+		get; set;
+	}
+	public int Quantity
+	{
+		get; set;
 	}
 }

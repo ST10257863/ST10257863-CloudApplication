@@ -60,9 +60,6 @@ namespace CloudApplication.Models
 				cmd.Parameters.AddWithValue("@TransactionGroupID", transactionGroupID);
 
 				int transactionID = Convert.ToInt32(cmd.ExecuteScalar());
-
-				con.Close();
-
 				return transactionID;
 			}
 		}
