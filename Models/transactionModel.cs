@@ -40,6 +40,11 @@ namespace CloudApplication.Models
 			get; set;
 		}
 
+		public double ProductPrice
+		{
+			get; set;
+		}
+
 		public int PlaceOrder(int? userID, int productID, int quantity, int transactionGroupID)
 		{
 			using (SqlConnection con = new SqlConnection(con_string))
@@ -87,7 +92,7 @@ namespace CloudApplication.Models
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
 				con.Open();
-				string sql = "SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName, t.transactionDate, t.transactionGroupID FROM transactionTable t JOIN productTable p ON t.productID = p.productID WHERE t.userID = @userID";
+				string sql = "SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName, t.transactionDate, t.transactionGroupID, p.productPrice FROM transactionTable t JOIN productTable p ON t.productID = p.productID WHERE t.userID = @userID";
 				SqlCommand cmd = new SqlCommand(sql, con);
 				cmd.Parameters.AddWithValue("@userID", userID);
 				SqlDataReader rdr = cmd.ExecuteReader();
@@ -101,7 +106,8 @@ namespace CloudApplication.Models
 						Quantity = Convert.ToInt32(rdr["transactionQuantity"]),
 						ProductName = rdr["productName"].ToString(),
 						TransactionDate = Convert.ToDateTime(rdr["transactionDate"]),
-						TransactionGroupID = Convert.ToInt32(rdr["transactionGroupID"])
+						TransactionGroupID = Convert.ToInt32(rdr["transactionGroupID"]),
+						ProductPrice = Convert.ToDouble(rdr["productPrice"])
 
 					};
 					transactions.Add(transaction);

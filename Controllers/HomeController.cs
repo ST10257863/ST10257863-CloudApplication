@@ -15,10 +15,6 @@ namespace CloudApplication.Controllers
 
 		public IActionResult Index(string sortOrder)
 		{
-			// Retrieve the userID from session
-			var userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
-
 			// Set the sort order based on the current state
 			string currentSortOrder = sortOrder ?? "default";
 			string nextSortOrder;
@@ -50,30 +46,24 @@ namespace CloudApplication.Controllers
 
 		public IActionResult AboutUs()
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
 			return View();
 		}
 
 		public IActionResult ContactUs()
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
+
 			return View();
 		}
 
 		public IActionResult MyWork()
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
 			return View();
 		}
 
 		public IActionResult Transaction()
 		{
 			// Retrieve the userID from session
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
+			var userID = HttpContext.Session.GetInt32("UserID");
 			if (userID == null)
 			{
 				TempData["RedirectReason"] = "You need to log in to perform this action.";
@@ -87,8 +77,6 @@ namespace CloudApplication.Controllers
 
 		public IActionResult Privacy()
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
 			return View();
 		}
 

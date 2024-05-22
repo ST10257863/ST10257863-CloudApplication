@@ -42,16 +42,12 @@ namespace CloudApplication.Controllers
 		//[HttpGet]
 		public ActionResult SignUp()
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
 			return View(userTbl);
 		}
 
 		//[HttpGet]
 		public ActionResult Login()
 		{
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
 			return View();
 		}
 
@@ -59,8 +55,7 @@ namespace CloudApplication.Controllers
 		{
 			// Clear the UserID session variable
 			HttpContext.Session.Remove("UserID");
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
+
 			// Redirect to the home page
 			return RedirectToAction("Index", "Home");
 

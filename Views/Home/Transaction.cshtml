@@ -9,20 +9,20 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th colspan="6">Transaction History for User:@userID</th>
+				<th colspan="6">Transaction History for User: @userID</th>
 			</tr>
 			<tr>
-				@* <th>Order</th> *@
-				@* <th>Transaction ID</th> *@
-				@* <th>User ID</th> *@
 				<th>Product ID</th>
 				<th>Product Name</th>
+				<th>Product Price</th>
 				<th>Transaction Quantity</th>
+				<th>Total Price</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach (var transactionGroup in Model.GroupBy(t => t.TransactionGroupID))
 			{
+				double totalPricePerOrder = 0; // Moved the declaration outside of the loop
 				<tr>
 					<td colspan="6" style="background-color: lightgray">
 						Order number @transactionGroup.Key - @transactionGroup.First().TransactionDate.ToString("yyyy/MM/dd")
@@ -30,20 +30,41 @@
 				</tr>
 				@foreach (var transaction in transactionGroup)
 				{
+					double transactionTotalPrice = (double)transaction.ProductPrice * transaction.Quantity; // Calculate total price for each transaction
+					totalPricePerOrder += transactionTotalPrice; // Accumulate total price for the order
 					<tr>
-						@* <td></td> <!-- Leave this cell empty for alignment --> *@
-						@* <td>@transaction.TransactionID</td> *@
-						@* <td>@transaction.UserID</td> *@
 						<td>@transaction.ProductID</td>
 						<td>@transaction.ProductName</td>
+						<td>@transaction.ProductPrice</td>
 						<td>@transaction.Quantity</td>
+						<td>@transactionTotalPrice</td> <!-- Display total price for each transaction -->
 					</tr>
 				}
+				<tr>
+					<td colspan="4"></td>
+					<td colspan="2" style="background-color: lightgray">
+						Total Price: R @totalPricePerOrder <!-- Display total price for the order -->
+					</td>
+				</tr>
 			}
 		</tbody>
 	</table>
 }
 else
 {
-	<p>No transactions available.</p>
+	<table>
+		<thead>
+			<tr>
+				<th colspan="6">Transaction History for User: @userID</th>
+			</tr>
+			<tr>
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Product Price</th>
+				<th>Transaction Quantity</th>
+				<th>Total Price</th>
+			</tr>
+		</thead>
+		<tr>No transactions available.</tr>
+	</table>
 }

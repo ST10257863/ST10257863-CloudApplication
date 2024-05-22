@@ -2,101 +2,52 @@ html {
     font-size: 14px;
 }
 
-/*Style code begin*/
-/*:root {
-    --text: #eaf7d7;
-    --background: #080d03;
-    --primary: #c0e995;
-    --secondary: #1d348c;
-    --accent: #a24edb;
-    --navbar-background: #333;
-    Dark grey for the navbar background --menu-text: #eaf7d7;
-    Light text for the menu
+:root {
+    --text: #0b0b13;
+    --background: #dfdddd;
+    --primary: #4b4dbe;
+    --secondary: #4e50ca;
+    --accent: #4446da;
 }
 
-body {
-    color: var(--text);
-    background-color: var(--background);
-}
-
-a {
-    color: var(--primary);
-}
-
-    a:hover {
-        color: var(--accent);
-    }
-
-button {
+/*.btn-primary {
+    color: white;
     background-color: var(--primary);
-    color: var(--text);
 }
 
-    button:hover {
-        background-color: var(--secondary);
-    }
-
-header {
-    background-color: var(--secondary);
-    color: var(--text);
-}
-
-footer {
-    background-color: var(--secondary);
-    color: var(--text);
-}
-
-.navbar {
-    background-color: var(--navbar-background);
-    color: var(--text);
-}
-
-    .navbar a {
-        color: var(--primary);
-    }
-
-        .navbar a:hover {
-            color: var(--accent);
-        }
-
-.section-title {
-    color: var(--text);
-}
-
-.section-subtitle {
-    color: var(--text);
-}
-
-.card {
-    background-color: var(--primary);
-    color: var(--background);
-}
-
-.card-title {
-    color: var(--text);
-}
-
-.card-text {
-    color: var(--text);
-}
-
-input, textarea {
-    background-color: var(--background);
-    color: var(--text);
-    border: 1px solid var(--primary);
-}
-
-    input:focus, textarea:focus {
+    .btn-primary:hover {
+        color: white;
+        background-color: var(--accent);
         border-color: var(--accent);
     }
 
-Menu specific styles
-.menu {
-    color: var(--menu-text);
-}*/
-/*Style code end*/
+.btn-secondary {
+    color: white;
+    background-color: dimgrey;
+}
 
+.btn-outline-success {
+    color: var(--primary);
+    border-color: var(--primary);
+}
 
+    .btn-outline-success:hover {
+        color: var(--text);
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+.btn-outline-danger {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+    .btn-outline-danger:hover {
+        color: var(--text);
+        background-color: var(--accent);
+        border-color: var(--accent);
+    }
+*/
 @media (min-width: 768px) {
     html {
         font-size: 16px;
