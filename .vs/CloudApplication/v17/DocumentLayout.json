@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\models\\transactionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\transactionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\user\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\user\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\models\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:models\\cartmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\home\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\home\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\home\\transaction.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\home\\transaction.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\cart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\cart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|c:\\users\\jamie\\documents\\github\\st10257863-cloudapllication\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F545BCA2-1E9F-46E8-A9F9-F54BA70FACC7}|CloudApplication.csproj|solutionrelative:views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +29,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 266,
+          "DockedWidth": 204,
           "SelectedChildIndex": 3,
           "Children": [
             {
@@ -47,85 +43,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Cart.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Cart.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Cart.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Cart.cshtml",
-              "RelativeToolTip": "Views\\Home\\Cart.cshtml",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAswBkAAAAoAAAA",
+              "Title": "Transaction.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Transaction.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Transaction.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Transaction.cshtml",
+              "RelativeToolTip": "Views\\Home\\Transaction.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACUAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-22T08:32:21.792Z",
+              "WhenOpened": "2024-05-23T09:55:50.93Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TransactionModel.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\TransactionModel.cs",
-              "RelativeDocumentMoniker": "Models\\TransactionModel.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\TransactionModel.cs",
-              "RelativeToolTip": "Models\\TransactionModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T06:28:29.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TransactionController.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\TransactionController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TransactionController.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\TransactionController.cs",
-              "RelativeToolTip": "Controllers\\TransactionController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T07:47:00.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Cart.cshtml",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Cart\\Cart.cshtml",
-              "RelativeDocumentMoniker": "Views\\Cart\\Cart.cshtml",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Cart\\Cart.cshtml",
-              "RelativeToolTip": "Views\\Cart\\Cart.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAALAAAA",
+              "Title": "SignUp.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\SignUp.cshtml",
+              "RelativeDocumentMoniker": "Views\\User\\SignUp.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\SignUp.cshtml",
+              "RelativeToolTip": "Views\\User\\SignUp.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACwAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-22T07:47:37.008Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 294,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Controllers\\CartController.cs",
-              "RelativeToolTip": "Controllers\\CartController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T06:53:49.915Z",
+              "WhenOpened": "2024-05-23T08:40:28.953Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CartModel.cs",
-              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\CartModel.cs",
-              "RelativeDocumentMoniker": "Models\\CartModel.cs",
-              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Models\\CartModel.cs",
-              "RelativeToolTip": "Models\\CartModel.cs",
-              "ViewState": "AQIAAJoAAAAAAAAAAAAawK8AAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T06:23:15.174Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAIsAAAAAAAAAAAAAAMEAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-23T08:38:07.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\User\\Login.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\User\\Login.cshtml",
+              "RelativeToolTip": "Views\\User\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAkwDQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-23T08:37:58.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jamie\\Documents\\GitHub\\ST10257863-CLoudApllication\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAA8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-23T08:36:18.748Z",
               "EditorCaption": ""
             }
           ]

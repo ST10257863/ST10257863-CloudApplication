@@ -37,13 +37,13 @@
 						<td>@transaction.ProductName</td>
 						<td>@transaction.ProductPrice</td>
 						<td>@transaction.Quantity</td>
-						<td>@transactionTotalPrice</td> <!-- Display total price for each transaction -->
+						<td>@Math.Round(transactionTotalPrice, 2)</td> <!-- Display total price for each transaction and round to the second decimal place -->
 					</tr>
 				}
 				<tr>
 					<td colspan="4"></td>
 					<td colspan="2" style="background-color: lightgray">
-						Total Price: R @totalPricePerOrder <!-- Display total price for the order -->
+						Total Price: R @Math.Round(totalPricePerOrder, 2) <!-- Display total price for the order -->
 					</td>
 				</tr>
 			}
@@ -64,9 +64,12 @@ else
 				<th>Transaction Quantity</th>
 				<th>Total Price</th>
 			</tr>
+
 		</thead>
-		<tbody>
-			<tr>No transactions available.</tr>
-		</tbody>
+		<td>You have no transactions.</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
 	</table>
 }

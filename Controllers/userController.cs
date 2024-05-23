@@ -14,7 +14,7 @@ namespace CloudApplication.Controllers
 		public ActionResult SignUp(userModel Users)
 		{
 			var result = userTbl.insertUser(Users);
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Login", "User");
 		}
 
 		//asp-action"Login"

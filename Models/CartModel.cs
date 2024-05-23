@@ -47,7 +47,6 @@ namespace CloudApplication.Models
 		{
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				con.Open();
 
 				string sql = @"
                 INSERT INTO cartTable (UserID, ProductID, Quantity) 
@@ -57,6 +56,7 @@ namespace CloudApplication.Models
 				cmd.Parameters.AddWithValue("@ProductID", productID);
 				cmd.Parameters.AddWithValue("@Quantity", quantity);
 
+				con.Open();
 				int rowsAffected = cmd.ExecuteNonQuery();
 				con.Close();
 				return rowsAffected;
