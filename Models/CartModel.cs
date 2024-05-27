@@ -45,21 +45,27 @@ namespace CloudApplication.Models
 		// Method to add a product to the cart for a specific user
 		public int AddToCart(int userID, int productID, int quantity)
 		{
-			using (SqlConnection con = new SqlConnection(con_string))
+			if (ProductModel.checkProductAvailablility(productID) == true)
 			{
-
-				string sql = @"
+				using (SqlConnection con = new SqlConnection(con_string))
+				{
+					string sql = @"
                 INSERT INTO cartTable (UserID, ProductID, Quantity) 
                 VALUES (@UserID, @ProductID, @Quantity)";
-				SqlCommand cmd = new SqlCommand(sql, con);
-				cmd.Parameters.AddWithValue("@UserID", userID);
-				cmd.Parameters.AddWithValue("@ProductID", productID);
-				cmd.Parameters.AddWithValue("@Quantity", quantity);
+					SqlCommand cmd = new SqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("@UserID", userID);
+					cmd.Parameters.AddWithValue("@ProductID", productID);
+					cmd.Parameters.AddWithValue("@Quantity", quantity);
 
-				con.Open();
-				int rowsAffected = cmd.ExecuteNonQuery();
-				con.Close();
-				return rowsAffected;
+					con.Open();
+					int rowsAffected = cmd.ExecuteNonQuery();
+					con.Close();
+					return rowsAffected;
+				}
+			}
+			else
+			{
+				return 0;
 			}
 		}
 
@@ -127,12 +133,6 @@ namespace CloudApplication.Models
 			}
 		}
 
-		// Method to check out the cart
-		//public void CheckOut(int userID)
-		//{
-		//	// Additional logic for checking out the cart can be implemented here
-		//}
-
 		// Check out the cart
 		public void CheckOut(int userID)
 		{
@@ -160,29 +160,73 @@ namespace CloudApplication.Models
 				con.Close();
 			}
 		}
-	}
-}
 
-public class CartItem
-{
-	public int UserID
-	{
-		get; set;
-	}
-	public int ProductID
-	{
-		get; set;
-	}
-	public string ProductName
-	{
-		get; set;
-	}
-	public decimal Price
-	{
-		get; set;
-	}
-	public int Quantity
-	{
-		get; set;
+		public Boolean CheckItemInCart(int productID)
+		{
+			Boolean isItemInCart = false;
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				con.Open();
+
+				string sql = "SELECT * FROM cartTable WHERE ProductID = @ProductID";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+
+				SqlDataReader rdr = cmd.ExecuteReader();
+				while (rdr.Read())
+				{
+					isItemInCart = true;
+				}
+
+				con.Close();
+			}
+			return isItemInCart;
+		}
+		public int GetQuantity(int userID, int productID)
+		{
+			int quantity = 0;
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				con.Open();
+
+				string sql = "SELECT Quantity FROM cartTable WHERE UserID = @UserID AND ProductID = @ProductID";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+
+				SqlDataReader rdr = cmd.ExecuteReader();
+				while (rdr.Read())
+				{
+					quantity = Convert.ToInt32(rdr["Quantity"]);
+				}
+
+				con.Close();
+			}
+			return quantity;
+		}
+
+		public class CartItem
+		{
+			public int UserID
+			{
+				get; set;
+			}
+			public int ProductID
+			{
+				get; set;
+			}
+			public string ProductName
+			{
+				get; set;
+			}
+			public decimal Price
+			{
+				get; set;
+			}
+			public int Quantity
+			{
+				get; set;
+			}
+		}
 	}
 }

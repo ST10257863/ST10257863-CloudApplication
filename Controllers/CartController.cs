@@ -39,9 +39,30 @@ namespace CloudApplication.Controllers
 			{
 				return RedirectToAction("Login", "User");
 			}
+			if (cartModel.CheckItemInCart(productID) == true)
+			{
+				// Get the current quantity of the item in the cart
+				int currentQuantity = cartModel.GetQuantity((int)userID, productID);
 
-			cartModel.AddToCart((int)userID, productID, quantity);
-			TempData["SuccessMessage"] = "Item successfully added to cart.";
+				// Add the new quantity to the current quantity
+				int newQuantity = currentQuantity + quantity;
+
+				// Update the quantity of the item in the cart
+				cartModel.UpdateCart((int)userID, productID, newQuantity);
+				TempData["SuccessMessage"] = "Item quantity updated in cart.";
+			}
+			else
+			{
+				if (cartModel.AddToCart((int)userID, productID, quantity) > 0)
+				{
+					TempData["SuccessMessage"] = "Item successfully added to cart.";
+				}
+				else
+				{
+					TempData["ErrorMessage"] = "Item could not be added to cart, out of stock.";
+				}
+			}
+
 			return RedirectToAction("Index", "Home");
 		}
 

@@ -55,8 +55,11 @@ namespace CloudApplication.Controllers
 			return View();
 		}
 
+		[HttpGet]
 		public IActionResult MyWork()
 		{
+			//var productsWithImages = ProductModel.RetrieveProductsImages();
+			//return View(productsWithImages);
 			return View();
 		}
 

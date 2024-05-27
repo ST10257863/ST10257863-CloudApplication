@@ -20,6 +20,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@ViewData["Title"]</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('[data-toggle="popover"]').popover({ trigger: "hover", html: false });
+		});
+	</script>
+
 </head>
 <body class="bg-light">
 	<div class="container mt-5">
@@ -93,7 +101,13 @@
 				@foreach (var product in products)
 				{
 					<tr>
-						<td>@product.Name</td>
+						<td>
+							<div class="product-container">
+								<span class="product-name" data-img-url="@product.ImageUrl">
+									@product.Name
+								</span>
+								<div class="image-preview"></div>
+							</div>
 						<td>R @product.Price</td>
 						<td>@product.Category</td>
 						<td>@product.Availability</td>
@@ -106,7 +120,56 @@
 						</td>
 					</tr>
 				}
+
 			</tbody>
 		</table>
 	</div>
+
+	<style>
+		.product-container {
+			position: relative;
+			display: inline-block;
+		}
+
+		.product-name {
+			cursor: pointer;
+		}
+
+		.image-preview {
+			width: 200px;
+			height: 200px;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-color: white;
+			background-position: center;
+			position: absolute;
+			left: 100%;
+			top: 0;
+			display: none;
+			border: 1px solid #ccc;
+			z-index: 1000;
+		}
+	</style>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			var productNames = document.querySelectorAll('.product-name');
+
+			productNames.forEach(function (productName) {
+				productName.addEventListener('mouseover', function () {
+					var imageUrl = this.getAttribute('data-img-url');
+					var imagePreview = this.nextElementSibling;
+					imagePreview.style.backgroundImage = 'url(' + imageUrl + ')';
+					imagePreview.style.display = 'block';
+				});
+
+				productName.addEventListener('mouseout', function () {
+					var imagePreview = this.nextElementSibling;
+					imagePreview.style.display = 'none';
+				});
+			});
+		});
+	</script>
+
 </body>
+

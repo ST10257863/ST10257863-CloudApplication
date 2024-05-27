@@ -8,16 +8,10 @@ namespace CloudApplication.Controllers
 		public ProductModel prodtbl = new ProductModel();
 
 		[HttpPost]
-		public ActionResult MyWorkInsertProduct(ProductModel products)
+		public ActionResult MyWorkInsertProduct(ProductModel product)
 		{
-			var newProduct = prodtbl.InsertProduct(products);
+			int result = prodtbl.InsertProduct(product);
 			return RedirectToAction("Index", "Home");
-		}
-
-		[HttpGet]
-		public ActionResult MyWork()
-		{
-			return View(prodtbl);
 		}
 	}
 }
