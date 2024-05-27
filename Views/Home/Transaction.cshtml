@@ -1,26 +1,75 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<CloudApplication.Models.TransactionModel>
 @{
 	ViewData["Title"] = "Transactions";
-	var transactions = ViewData["transactions"] as List<CloudApplication.Models.transactionModel>;
+	int? userID = ViewData["userID"] as int?;
 }
-<table class="table">
-	<tr>
-		<th>Transaction ID</th>
-		<th>User ID</th>
-		<th>Product ID</th>
-		<th>Transaction Quantity</th>
-	</tr>
-	@foreach (var transaction in transactions)
-	{
-		<tr>
-			<td>@transaction.TransactionID</td>
-			<td>@transaction.ProductID</td>
-			<td>@transaction.Quantity</td>
-			<td>
-		</tr>
-	}
-	<tbody>
-	</tbody>
-</table>
+
+@if (Model != null && Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="6">Transaction History for User: @userID</th>
+			</tr>
+			<tr>
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Product Price</th>
+				<th>Transaction Quantity</th>
+				<th>Total Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var transactionGroup in Model.GroupBy(t => t.TransactionGroupID))
+			{
+				double totalPricePerOrder = 0; // Moved the declaration outside of the loop
+				<tr>
+					<td colspan="6" style="background-color: lightgray">
+						Order number @transactionGroup.Key - @transactionGroup.First().TransactionDate.ToString("yyyy/MM/dd")
+					</td>
+				</tr>
+				@foreach (var transaction in transactionGroup)
+				{
+					double transactionTotalPrice = (double)transaction.ProductPrice * transaction.Quantity; // Calculate total price for each transaction
+					totalPricePerOrder += transactionTotalPrice; // Accumulate total price for the order
+					<tr>
+						<td>@transaction.ProductID</td>
+						<td>@transaction.ProductName</td>
+						<td>@transaction.ProductPrice</td>
+						<td>@transaction.Quantity</td>
+						<td>@Math.Round(transactionTotalPrice, 2)</td> <!-- Display total price for each transaction and round to the second decimal place -->
+					</tr>
+				}
+				<tr>
+					<td colspan="4"></td>
+					<td colspan="2" style="background-color: lightgray">
+						Total Price: R @Math.Round(totalPricePerOrder, 2) <!-- Display total price for the order -->
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="6">Transaction History for User: @userID</th>
+			</tr>
+			<tr>
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Product Price</th>
+				<th>Transaction Quantity</th>
+				<th>Total Price</th>
+			</tr>
+
+		</thead>
+		<td>You have no transactions.</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</table>
+}

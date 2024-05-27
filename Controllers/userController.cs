@@ -1,4 +1,5 @@
 ﻿using CloudApplication.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
@@ -13,15 +14,15 @@ namespace CloudApplication.Controllers
 		public ActionResult SignUp(userModel Users)
 		{
 			var result = userTbl.insertUser(Users);
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Login", "User");
 		}
 
 		//asp-action"Login"
 		[HttpPost]
-		public ActionResult Login(string email, string name)
+		public ActionResult Login(string password, string name)
 		{
 			var userModel = new userModel();
-			int userID = userModel.SelectUser(email, name);
+			int userID = userModel.SelectUser(password, name);
 			if (userID != -1)
 			{
 				// User found, store userID in session
@@ -33,7 +34,7 @@ namespace CloudApplication.Controllers
 			else
 			{
 				// User not found, show error message
-				TempData["ErrorMessage"] = "Invalid email or name. Please try again.";
+				TempData["ErrorMessage"] = "Invalid password or name. Please try again.";
 				return RedirectToAction("Login", "User");
 			}
 		}
@@ -48,6 +49,16 @@ namespace CloudApplication.Controllers
 		public ActionResult Login()
 		{
 			return View();
+		}
+
+		public IActionResult LogOut()
+		{
+			// Clear the UserID session variable
+			HttpContext.Session.Remove("UserID");
+
+			// Redirect to the home page
+			return RedirectToAction("Index", "Home");
+
 		}
 	}
 }

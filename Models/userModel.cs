@@ -23,16 +23,22 @@ namespace CloudApplication.Models
 			get; set;
 		}
 
+		public string Password
+		{
+			get; set;
+		}
+
 		public int insertUser(userModel a)
 		{
 			try
 			{
-				string sql = "INSERT INTO userTable (userName, userSurname, userEmail) VALUES (@Name, @Surname, @Email)";
+				string sql = "INSERT INTO userTable (userName, userSurname, userEmail, userPassword) VALUES (@Name, @Surname, @Email, @Password)";
 				SqlCommand cmd = new SqlCommand(sql, con);
 
 				cmd.Parameters.AddWithValue("@Name", a.Name);
 				cmd.Parameters.AddWithValue("@Surname", a.Surname);
 				cmd.Parameters.AddWithValue("@Email", a.Email);
+				cmd.Parameters.AddWithValue("@Password", a.Password);
 
 				con.Open();
 				int rowsAffected = cmd.ExecuteNonQuery();
@@ -46,14 +52,14 @@ namespace CloudApplication.Models
 
 		}
 
-		public int SelectUser(string email, string name)
+		public int SelectUser(string password, string name)
 		{
 			int userID = -1; // Default value if user is not found
 			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				string sql = "SELECT userID FROM userTable WHERE userEmail = @Email AND userName = @Name";
+				string sql = "SELECT userID FROM userTable WHERE userPassword = @Password AND userName = @Name";
 				SqlCommand cmd = new SqlCommand(sql, con);
-				cmd.Parameters.AddWithValue("@Email", email);
+				cmd.Parameters.AddWithValue("@Password", password);
 				cmd.Parameters.AddWithValue("@Name", name);
 				try
 				{

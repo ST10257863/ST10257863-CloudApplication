@@ -1,26 +1,21 @@
-﻿@model CloudApplication.Models.productModel
+﻿@model CloudApplication.Models.ProductModel
 
 @{
 	ViewData["Title"] = "My Work";
 }
+
 <h1>@ViewData["Title"]</h1>
 
 <p>Page to display the work of KhumaloCraft.</p>
-<p>
-	<img src="/pictures/WarhammerSale.png"
-		 alt="My Image"
-		 width="370"
-		 height="385" />
-</p>
-<p>Professional painting and commissions. R150 p/h.</p>
-<body>
-	<form asp-controller="product" asp-action="MyWorkInsertProduct" method="post">
-		<p>Insert new products</p>
-		<input type="text" name="Name" placeholder="Name" required>
-		<input type="text" name="Price" placeholder="Price" required>
-		<input type="text" name="Category" placeholder="Category" required>
-		<input type="text" name="Availability" placeholder="Availability" required>
-		<button type="submit">Submit</button>
-	</form>
-</body>
+<form asp-controller="Product" asp-action="MyWorkInsertProduct" method="post">
+	<p>Insert new product</p>
+	<input asp-for="Name" type="text" placeholder="Product Name" required />
+	<input asp-for="Price" type="text" placeholder="Product Price" required />
+	<input asp-for="Category" type="text" placeholder="Product Category" required />
+	<input asp-for="Availability" type="hidden" value="Available" />
+	<input asp-for="ImageName" type="text" placeholder="Image Name" required />
+	<input asp-for="ImageUrl" type="text" placeholder="Image URL" required />
+	<button type="submit">Submit</button>
+</form>
+
 <p>Jamie Parker - ST10257863</p>

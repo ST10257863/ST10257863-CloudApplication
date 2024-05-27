@@ -12,22 +12,37 @@ namespace CloudApplication.Controllers
 		{
 			_logger = logger;
 		}
-		//Here is where we give the webpage the ability to access the the subpages. without this is will not be found
-		public IActionResult Index()
-		{
-			// Retrieve the userID from session
-			var userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
 
+		public IActionResult Index(string sortOrder)
+		{
+			// Set the sort order based on the current state
+			string currentSortOrder = sortOrder ?? "default";
+			string nextSortOrder;
+
+			if (currentSortOrder == "price_asc")
+			{
+				nextSortOrder = "price_desc";
+			}
+			else if (currentSortOrder == "price_desc")
+			{
+				nextSortOrder = "default";
+			}
+			else
+			{
+				nextSortOrder = "price_asc";
+			}
 
 			// Retrieve all products from the database
-			List<productModel> products = productModel.retrieveProducts();
+			List<ProductModel> products = ProductModel.RetrieveProducts(currentSortOrder);
 
-			// Pass products to the view
+			// Pass products and the next sort order to the view
 			ViewData["Products"] = products;
+			ViewData["CurrentSortOrder"] = currentSortOrder;
+			ViewData["NextSortOrder"] = nextSortOrder;
 
 			return View();
 		}
+
 
 		public IActionResult AboutUs()
 		{
@@ -36,26 +51,33 @@ namespace CloudApplication.Controllers
 
 		public IActionResult ContactUs()
 		{
+
 			return View();
 		}
 
+		[HttpGet]
 		public IActionResult MyWork()
 		{
+			//var productsWithImages = ProductModel.RetrieveProductsImages();
+			//return View(productsWithImages);
 			return View();
 		}
 
 		public IActionResult Transaction()
 		{
 			// Retrieve the userID from session
-			int? userID = HttpContext.Session.GetInt32("UserID");
-			ViewData["userID"] = userID;
+			var userID = HttpContext.Session.GetInt32("UserID");
+			if (userID == null)
+			{
+				TempData["RedirectReason"] = "You need to log in to perform this action.";
+				return RedirectToAction("Login", "User");
+			}
 
-
-			List<transactionModel> transactions = transactionModel.RetrieveUserTransactions(userID);
-			ViewData["Transactions"] = transactions;
-
-			return View();
+			// Retrieve user transactions
+			var transactionController = new TransactionController();
+			return transactionController.RetrieveUserTransactions(userID);
 		}
+
 		public IActionResult Privacy()
 		{
 			return View();

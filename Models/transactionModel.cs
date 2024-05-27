@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace CloudApplication.Models
 {
-	public class transactionModel
+	public class TransactionModel
 	{
 		public static string con_string = "Server = tcp:st10257863-server.database.windows.net,1433;Initial Catalog=ST10257863-database;Persist Security Info=False;User ID=Jamie;Password=window-festive-grandee-dessert!12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
@@ -25,60 +25,89 @@ namespace CloudApplication.Models
 		{
 			get; set;
 		}
-
-		public int PlaceOrder(int? userID, int productID, int quantity)
+		public string ProductName
 		{
-			try
-			{
-				using (con)
-				{
-					string sql = "INSERT INTO transactionTable (userID, productID, transactionQuantity) VALUES (@UserID, @ProductID, @Quantity)";
-					using (SqlCommand cmd = new SqlCommand(sql, con))
-					{
-						cmd.Parameters.AddWithValue("@UserID", userID);
-						cmd.Parameters.AddWithValue("@ProductID", productID);
-						cmd.Parameters.AddWithValue("@Quantity", quantity);
+			get; set;
+		}
 
-						con.Open();
-						int rowsAffected = cmd.ExecuteNonQuery();
-						con.Close();
-						return rowsAffected;
-					}
-				}
-			}
-			catch (Exception ex)
+		public DateTime TransactionDate
+		{
+			get; set;
+		}
+
+		public int TransactionGroupID
+		{
+			get; set;
+		}
+
+		public double ProductPrice
+		{
+			get; set;
+		}
+
+		public int PlaceOrder(int? userID, int productID, int quantity, int transactionGroupID)
+		{
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-				// Log the exception (if logging is set up) or handle it as needed
-				throw; // Rethrow the exception to be handled by the calling code
+				con.Open();
+
+				string sql = "INSERT INTO transactionTable (UserID, ProductID, transactionQuantity, transactionDate, transactionGroupID) VALUES (@UserID, @ProductID, @Quantity, @TransactionDate, @TransactionGroupID)";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@UserID", userID);
+				cmd.Parameters.AddWithValue("@ProductID", productID);
+				cmd.Parameters.AddWithValue("@Quantity", quantity);
+				cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now);
+				cmd.Parameters.AddWithValue("@TransactionGroupID", transactionGroupID);
+
+				int transactionID = Convert.ToInt32(cmd.ExecuteScalar());
+				return transactionID;
+			}
+		}
+
+		public int CreateNewOrder(int userID)
+		{
+			using (SqlConnection con = new SqlConnection(con_string))
+			{
+				con.Open();
+				string getLastTransactionGroupIDQuery = "SELECT TOP 1 transactionGroupID FROM transactionTable ORDER BY transactionGroupID DESC";
+				SqlCommand getLastTransactionGroupIDCmd = new SqlCommand(getLastTransactionGroupIDQuery, con);
+				int lastTransactionGroupID = 0;
+				object result = getLastTransactionGroupIDCmd.ExecuteScalar();
+				if (result != null && result != DBNull.Value)
+				{
+					lastTransactionGroupID = Convert.ToInt32(result);
+				}
+				int newTransactionGroupID = lastTransactionGroupID + 1;
+				return newTransactionGroupID;
 			}
 		}
 
 
-		public static List<transactionModel> RetrieveUserTransactions(int? userID)
+		public List<TransactionModel> RetrieveUserTransactions(int? userID)
 		{
-			List<transactionModel> transactions = new List<transactionModel>();
-			if (userID != null)
+			List<TransactionModel> transactions = new List<TransactionModel>();
+			using (SqlConnection con = new SqlConnection(con_string))
 			{
-
-				using (SqlConnection con = new SqlConnection(con_string))
+				con.Open();
+				string sql = "SELECT t.transactionID, t.userID, t.productID, t.transactionQuantity, p.productName, t.transactionDate, t.transactionGroupID, p.productPrice FROM transactionTable t JOIN productTable p ON t.productID = p.productID WHERE t.userID = @userID";
+				SqlCommand cmd = new SqlCommand(sql, con);
+				cmd.Parameters.AddWithValue("@userID", userID);
+				SqlDataReader rdr = cmd.ExecuteReader();
+				while (rdr.Read())
 				{
-					string sql = "SELECT * FROM transactionTable WHERE userID = @userID";
-					SqlCommand cmd = new SqlCommand(sql, con);
-					cmd.Parameters.AddWithValue("@userID", userID);
-
-					con.Open();
-					SqlDataReader rdr = cmd.ExecuteReader();
-					while (rdr.Read())
-
+					TransactionModel transaction = new TransactionModel
 					{
-						transactionModel transaction = new transactionModel();
-						transaction.TransactionID = Convert.ToInt32(rdr["transactionID"]);
-						transaction.UserID = Convert.ToInt32(rdr["userID"]);
-						transaction.ProductID = Convert.ToInt32(rdr["productID"]);
-						transaction.Quantity = Convert.ToInt32(rdr["transactionQuantity"]);
+						TransactionID = Convert.ToInt32(rdr["transactionID"]),
+						UserID = Convert.ToInt32(rdr["userID"]),
+						ProductID = Convert.ToInt32(rdr["productID"]),
+						Quantity = Convert.ToInt32(rdr["transactionQuantity"]),
+						ProductName = rdr["productName"].ToString(),
+						TransactionDate = Convert.ToDateTime(rdr["transactionDate"]),
+						TransactionGroupID = Convert.ToInt32(rdr["transactionGroupID"]),
+						ProductPrice = Convert.ToDouble(rdr["productPrice"])
 
-						transactions.Add(transaction);
-					}
+					};
+					transactions.Add(transaction);
 				}
 			}
 			return transactions;
