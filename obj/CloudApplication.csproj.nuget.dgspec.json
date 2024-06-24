@@ -49,6 +49,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Azure.Search.Documents": {
+              "target": "Package",
+              "version": "[11.5.1, )"
+            },
+            "Microsoft.Azure.Search": {
+              "target": "Package",
+              "version": "[10.1.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.1, )"

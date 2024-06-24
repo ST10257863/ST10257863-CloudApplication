@@ -1,0 +1,17 @@
+﻿@model IEnumerable<SearchResult>
+
+<form method="get" asp-controller="SearchService" asp-action="SearchView">
+	<input type="text" name="query" placeholder="Search..." />
+	<button type="submit">Search</button>
+</form>
+
+<ul>
+	@foreach (var result in Model)
+	{
+		<li>
+			<h2>@result.ProductName</h2>
+			<p>Price: @result.Price</p>
+			<p>Availability: @(result.Availability ? "In Stock" : "Out of Stock")</p>
+		</li>
+	}
+</ul>

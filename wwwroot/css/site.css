@@ -2,13 +2,415 @@ html {
     font-size: 14px;
 }
 
-:root {
+/*:root {
     --text: #0b0b13;
     --background: #dfdddd;
     --primary: #4b4dbe;
     --secondary: #4e50ca;
     --accent: #4446da;
+}*/
+
+/*:root {
+    --text: #ececf4;
+    --background: #222020;
+    --primary: #4143b4;
+    --secondary: #3537b1;
+    --accent: #2528bb;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+header, nav, main, footer {
+    padding: 1rem;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+    nav a {
+        color: var(--text);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+    }
+
+        nav a:hover {
+            background-color: var(--accent);
+            color: var(--text);
+        }
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid var(--accent);
+    padding: 0.75rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #333;
+}
+
+.thead-light th {
+    background-color: var(--primary);
+    color: var(--text);
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-name {
+    font-weight: bold;
+    color: var(--text);
+}
+
+.image-preview {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #444;
+    color: var(--text);
+    border: 1px solid var(--accent);
+}
+
+.w-25 {
+    width: 25%;
+}
+
+footer {
+    background-color: var(--primary);
+    color: var(--text);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.navbar {
+    background-color: var(--primary);
+    padding: 1rem;
+    color: var(--text);
+}
+
+.navbar-brand {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-item {
+    display: inline;
+}
+
+.nav-link {
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+    .nav-link:hover {
+        background-color: var(--accent);
+        color: var(--text);
+    }
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.btn-primary {
+    color: var(--text);
+    background-color: var(--primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+    .btn-primary:hover {
+        background-color: var(--accent);
+        border-color: var(--accent);
+    }
+
+.btn-secondary {
+    color: var(--text);
+    background-color: dimgrey;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.btn-outline-success {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+    .btn-outline-success:hover {
+        color: var(--text);
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+.btn-outline-danger {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+    .btn-outline-danger:hover {
+        color: var(--text);
+        background-color: var(--accent);
+        border-color: var(--accent);
+    }*/
+
+/* Additional styles for cohesive design */
+/*.card {
+    border: 1px solid var(--accent);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #333;
+    color: var(--text);
+}
+
+.card-header {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--accent);
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background-color: var(--primary);
+    color: var(--text);
+}
+
+.box-shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.border-top {
+    border-top: 1px solid var(--accent);
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--accent);
+}
+
+.text-muted {
+    color: #6c757d;
+}*/
+
+/* Custom styling for specific elements to match design */
+/*header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand, .navbar-nav .nav-item .nav-link {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.hero-section {
+    padding: 5rem 1rem;
+    text-align: center;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+    .hero-section h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-section p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+.cards-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.card {
+    width: 30%;
+    margin: 1rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+    .card .card-header {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .card .card-body p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+.footer {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 1rem;
+    text-align: center;
+}*/
+
+
+/*
+    Explanation of the Styles
+Root Variables:
+
+Define the color scheme with CSS variables for easy theme management.
+Global Styles:
+
+Set margins, padding, and font-family for html and body.
+Apply background color and text color.
+Header, Nav, Main, Footer:
+
+Padding for spacing.
+Background color and text color for header and nav.
+Links in Nav:
+
+Style links with padding and hover effects.
+Text Elements:
+
+Style headings, paragraphs, and text alignment.
+Container and Spacing Classes:
+
+Margin classes for spacing.
+Alerts:
+
+Style alert boxes with padding, border-radius, and background colors.
+Tables:
+
+Style table borders, padding, and hover effects.
+Product Container:
+
+Flexbox layout for product display.
+Forms:
+
+Style form controls and inputs.
+Footer:
+Background color, text color, and text alignment.
+Navbar:
+Background color, padding, and link styles.
+Buttons:
+Primary, secondary, and outline button styles with hover effects.
+Cards:
+Style card components with borders, padding, and background colors.
+Sticky Top:
+Position sticky for sticky header or nav elements.
+Box Shadow and Borders:
+Apply box shadows and border styles for visual depth.
+Muted Text:
+Style for muted text color.
+These styles should make your website cohesive and visually consistent. Adjust the styles as needed based on your specific requirements and design preferences.
+*/
+
+
 
 /*.btn-primary {
     color: white;
